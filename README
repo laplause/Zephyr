@@ -1,0 +1,3 @@
+This is a cross platform C++ DirectX/OpenGL game engine written by Christopher Sosa.
+
+Currently Implementing a SIMD vector math library based on VMath and XNAMAth called ZMath.
