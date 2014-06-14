@@ -3,26 +3,33 @@ using namespace ZMath;
 
 int main()
 {
-	Vec3 a;
-	a.x = 100.0f;
-	a.y = 200.0f;
-	a.z = 300.0f;
-	a.r = 400.0f;
-	a.g = 500.0f;
-	a.b = 600.0f;
-	a[0] = 1.0f;
-	a[1] = 0.0f;
-	a[2] = 1.0f;
+	Vec2 x2(5.0f), y2(1.0f);
+	Vec3 x3(5.0f), y3(1.0f);
+	Vec4 x(5.0f), y(1.0f);
 
-	Vec3 b(0.0f, 0.0f, 1.0f);
-	float f = b[0];
+	x = Add(x, y);
+	x = Sub(x, y);
 
-	Vec3 leet(1337.1337f);
-	f = leet[0];
+	Vector<float, 5> x5, y5;
+	x5[0] = 5.0f;
+	x5[1] = 5.0f;
+	x5[2] = 5.0f;
+	x5[3] = 5.0f;
+	x5[4] = 5.0f;
+	y5[0] = 1.0f;
+	y5[1] = 1.0f;
+	y5[2] = 1.0f;
+	y5[3] = 1.0f;
+	y5[4] = 1.0f;
 
-	Vec2 g(1.0f);
+	x5 += y5;
+	x5 = x5 + y5;
 
-	Vec3 fromTwo(g, 3.0f);
+	x2 = Add(x2, y2);
+	x2 = Sub(x2, y2);
+
+	x3 = Add(x3, y3);
+	x3 = Sub(x3, y3);
 
 	return 0;
 }
