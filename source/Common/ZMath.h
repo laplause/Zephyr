@@ -65,7 +65,7 @@ namespace ZMath
 		}
 		Vector<T, n>& operator/=(const T& scalar)
 		{
-			for (int i = 0; i < n, i++)
+			for (int i = 0; i < n; i++)
 			{
 				data[i] /= scalar;
 			}
@@ -125,7 +125,7 @@ namespace ZMath
 		}
 		Vector<T, 2>& operator/=(const T& scalar)
 		{
-			for (int i = 0; i < 2, i++)
+			for (int i = 0; i < 2; i++)
 			{
 				data[i] /= scalar;
 			}
@@ -180,7 +180,7 @@ namespace ZMath
 		}
 		Vector<T, 3>& operator/=(const T& scalar)
 		{
-			for (int i = 0; i < 3, i++)
+			for (int i = 0; i < 3; i++)
 			{
 				data[i] /= scalar;
 			}
@@ -236,7 +236,7 @@ namespace ZMath
 		}
 		Vector<T, 4>& operator/=(const T& scalar)
 		{
-			for (int i = 0; i < 4, i++)
+			for (int i = 0; i < 4; i++)
 			{
 				data[i] /= scalar;
 			}
@@ -384,30 +384,52 @@ namespace ZMath
 	}
 
 	template<typename T, int size>
-	Vector<T, size> operator/(Vector<T, size>* lhs, const T& scalar)
+	Vector<T, size> operator/(Vector<T, size>& lhs, const T& scalar)
 	{
 		return lhs /= scalar;
 	}
 
-	template<int size>
-	float Length(Vector<float, size>& v)
+	template<typename T, int size>
+	T LengthSquared(Vector<T, size>& v)
 	{
-		float result;
+		T result = 0;
 		for (int i = 0; i < size; i++)
 		{
 			result += (v[i] * v[i]);
 		}
 
-		return sqrtf(result);
+		return result;
 	}
 
-	template<int size>
-	float LengthSquared(Vector<float, size>& v)
+	template<typename T, int size>
+	T Length(Vector<T, size>& v)
 	{
-		float result;
+		return sqrtf(LengthSquared<T, size>(v));
+	}
+
+	template<typename T, int size>
+	Vector<T, size> Normalize(Vector<T, size>& v)
+	{
+		T length = Length<T, size>(v);
+
+		if (length > 0)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				v[i] /= length;
+			}
+		}
+
+		return v;
+	}
+
+	template<typename T, int size>
+	T Dot(const Vector<T, size>& lhs, const Vector<T, size>& rhs)
+	{
+		T result = 0;
 		for (int i = 0; i < size; i++)
 		{
-			result += (v[i] * v[i]);
+			result += (lhs[i] * rhs[i]);
 		}
 
 		return result;

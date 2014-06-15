@@ -53,8 +53,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../include</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100; 4481;4201</DisableSpecificWarnings>
-      <AdditionalUsingDirectories>
-      </AdditionalUsingDirectories>
+      <AdditionalUsingDirectories>$(SolutionDir)../include</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -72,6 +71,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../include</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100; 4481;4201</DisableSpecificWarnings>
+      <AdditionalUsingDirectories>$(SolutionDir)../include</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
