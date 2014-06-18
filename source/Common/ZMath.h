@@ -250,6 +250,32 @@ namespace ZMath
 	struct Matrix
 	{
 		T data[rows][cols];
+
+		Matrix<T, rows, cols>& operator*=(const T& scalar)
+		{
+			for (int i = 0; i < rows; i++)
+			{
+				for (int j = 0; j < cols; j++)
+				{
+					data[i][j] *= scalar;
+				}
+			}
+
+			return *this;
+		}
+
+		Matrix<T, rows, cols>& operator/=(const T& scalar)
+		{
+			for (int i = 0; i < rows; i++)
+			{
+				for (int j = 0; j < cols; j++)
+				{
+					data[i][j] /= scalar;
+				}
+			}
+
+			return *this;
+		}
 	};
 
 	// Common Matrix typedefs
@@ -282,6 +308,32 @@ namespace ZMath
 		}
 		//Matrix(Vector<T, 3>& Row0, Vector<T, 3>& Row1, Vector<T, 3>& Row2) : row0(Row0), row1(Row1), row2(Row2) {}
 		Vector<T, 3>& operator[](unsigned int n) { return rows[n]; }
+
+		Matrix<T, 3, 3>& operator*=(const T& scalar)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					data[i][j] *= scalar;
+				}
+			}
+
+			return *this;
+		}
+
+		Matrix<T, 3, 3>& operator/=(const T& scalar)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					data[i][j] /= scalar;
+				}
+			}
+
+			return *this;
+		}
 	};
 
 	template<typename T>
@@ -313,6 +365,32 @@ namespace ZMath
 		}
 		//Matrix(Vector<T, 4>& Row0, Vector<T, 4>& Row1, Vector<T, 4>& Row2, Vector<T, 4>& Row3) : row0(Row0), row1(Row1), row2(Row2), row3(Row3) {}
 		Vector<T, 4>& operator[](unsigned int n) { return rows[n]; }
+
+		Matrix<T, 4, 4>& operator*=(const T& scalar)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					data[i][j] *= scalar;
+				}
+			}
+
+			return *this;
+		}
+
+		Matrix<T, 4, 4>& operator/=(const T& scalar)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					data[i][j] /= scalar;
+				}
+			}
+
+			return *this;
+		}
 	};
 
 	Mat3x3 CreateRowMatrix3x3(Vec3& row0, Vec3& row1, Vec3& row2)
@@ -438,6 +516,19 @@ namespace ZMath
 	Vec3 Cross(Vec3& lhs, Vec3& rhs)
 	{
 		return Vec3((lhs.y*rhs.z) - (lhs.z*rhs.y), (lhs.z*rhs.x) - (lhs.x*rhs.z), (lhs.x*rhs.y) - (lhs.y*rhs.x));
+	}
+
+	// Matrix operations
+	template<typename T, int rows, int cols>
+	Matrix<T, rows, cols> operator*(const Matrix<T, rows, cols>& lhs, T& scalar)
+	{
+		return lhs *= scalar;
+	}
+
+	template<typename T, int rows, int cols>
+	Matrix<T, rows, cols> operator/(const Matrix<T, rows, cols>& lhs, T& scalar)
+	{
+		return lhs /= scalar;
 	}
 	
 }//end ZMath
