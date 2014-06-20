@@ -313,7 +313,7 @@ namespace ZMath
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				for (int i = 0; i < 3; i++)
+				for (int j = 0; j < 3; j++)
 				{
 					data[i][j] *= scalar;
 				}
@@ -326,7 +326,7 @@ namespace ZMath
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				for (int i = 0; i < 3; i++)
+				for (int j = 0; j < 3; j++)
 				{
 					data[i][j] /= scalar;
 				}
@@ -370,7 +370,7 @@ namespace ZMath
 		{
 			for (int i = 0; i < 4; i++)
 			{
-				for (int i = 0; i < 4; i++)
+				for (int j = 0; j < 4; j++)
 				{
 					data[i][j] *= scalar;
 				}
@@ -383,7 +383,7 @@ namespace ZMath
 		{
 			for (int i = 0; i < 4; i++)
 			{
-				for (int i = 0; i < 4; i++)
+				for (int j = 0; j < 4; j++)
 				{
 					data[i][j] /= scalar;
 				}
@@ -393,12 +393,19 @@ namespace ZMath
 		}
 	};
 
-	Mat3x3 CreateRowMatrix3x3(Vec3& row0, Vec3& row1, Vec3& row2)
+	Mat3x3 CreateRowMatrix3x3(Vec3& rowX, Vec3& rowY, Vec3& rowZ)
 	{
 		Mat3x3 m;
-		m.row0 = row0;
-		m.row1 = row1;
-		m.row2 = row2;
+		m.row0 = rowX;
+		m.row1 = rowY;
+		m.row2 = rowZ;
+
+		return m;
+	}
+
+	Mat3x3 CreateColumnMatrix3x3(Vec3& columnX, Vec3& columnY, Vec3& columZ)
+	{
+		Mat3x3 m(columnX.x, columnY.x, columZ.x, columnX.y, columnY.y, columZ.y, columnX.z, columnY.z, columZ.z);
 
 		return m;
 	}
@@ -411,13 +418,21 @@ namespace ZMath
 					  0, 0, 1.0f);
 	}
 
-	Mat4x4 CreateRowMatrix4x4(Vec4& row0, Vec4& row1, Vec4& row2, Vec4& row3)
+	Mat4x4 CreateRowMatrix4x4(Vec4& rowX, Vec4& rowY, Vec4& rowZ, Vec4& rowW)
 	{
 		Mat4x4 m;
-		m.row0 = row0;
-		m.row1 = row1;
-		m.row2 = row2;
-		m.row3 = row3;
+		m.row0 = rowX;
+		m.row1 = rowY;
+		m.row2 = rowZ;
+		m.row3 = rowW;
+
+		return m;
+	}
+
+	Mat4x4 CreateColumnMatrix4x4(Vec4& columnX, Vec4& columnY, Vec4& columnZ, Vec4& columnW)
+	{
+		Mat4x4 m(columnX.x, columnY.x, columnZ.x, columnW.x, columnX.y, columnY.y, columnZ.y, columnW.y,
+			     columnX.z, columnY.z, columnZ.z, columnW.z, columnX.w, columnY.w, columnZ.w, columnW.w);
 
 		return m;
 	}
@@ -520,13 +535,13 @@ namespace ZMath
 
 	// Matrix operations
 	template<typename T, int rows, int cols>
-	Matrix<T, rows, cols> operator*(const Matrix<T, rows, cols>& lhs, T& scalar)
+	Matrix<T, rows, cols> operator*(Matrix<T, rows, cols>& lhs, const T& scalar)
 	{
 		return lhs *= scalar;
 	}
 
 	template<typename T, int rows, int cols>
-	Matrix<T, rows, cols> operator/(const Matrix<T, rows, cols>& lhs, T& scalar)
+	Matrix<T, rows, cols> operator/(Matrix<T, rows, cols>& lhs, const T& scalar)
 	{
 		return lhs /= scalar;
 	}

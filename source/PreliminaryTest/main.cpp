@@ -3,28 +3,31 @@ using namespace ZMath;
 
 int main()
 {
-	Vec2 x2(1.0f, 0.0f), y2(1.0f, 0.0f);
-	Vec3 x3(0.0f, 0.0f, 1.0f), y3(1.0f, 0.0f, 0.0f);
-	Vec4 x(1.0f, 0, 0, 0), y(-1.0f, 0, 0, 0);
+	Vec3 x(1.0f, 2.0f, 3.0f);
+	Vec3 y(4.0f, 5.0f, 6.0f);
+	Vec3 z(7.0f, 8.0f, 9.0f);
 
-	Vector<float, 5> x5, y5;
-	x5[0] = 5.0f;
-	x5[1] = 4.0f;
-	x5[2] = 3.0f;
-	x5[3] = 2.0f;
-	x5[4] = 1.0f;
-	y5[0] = 2.0f;
-	y5[1] = 6.0f;
-	y5[2] = 1.0f;
-	y5[3] = 9.0f;
-	y5[4] = 0.0f;
+	Vec4 x4(1.0f, 2.0f, 3.0f, 4.0f);
+	Vec4 y4(5.0f, 6.0f, 7.0f, 8.0f);
+	Vec4 z4(9.0f, 10.0f, 11.0f, 12.0f);
+	Vec4 w4(13.0f, 14.0f, 15.0f, 16.0f);
 
-	float dot = Dot(x, y);
-	dot = Dot(x2, y2);
-	dot = Dot(x3, y3);
-	dot = Dot(x5, y5);
+	Mat3x3 r3 = CreateRowMatrix3x3(x, y, z);
+	Mat3x3 c3 = CreateColumnMatrix3x3(x, y, z);
 
-	Vec3 z = Cross(x3, y3);
+	Mat4x4 r4 = CreateRowMatrix4x4(x4, y4, z4, w4);
+	Mat4x4 c4 = CreateColumnMatrix4x4(x4, y4, z4, w4);
 
+	r3 *= 2.0f;
+	r3 /= 2.0f;
+
+	r3 = r3 * 2.0f;
+	r3 = r3 / 2.0f;
+
+	r4 *= 2.0f;
+	r4 /= 2.0f;
+
+	r4 = r4 * 2.0f;
+	r4 = r4 / 2.0f;
 	return 0;
 }
