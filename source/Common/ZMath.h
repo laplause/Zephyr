@@ -545,6 +545,87 @@ namespace ZMath
 	{
 		return lhs /= scalar;
 	}
+
+	template<typename T, int N, int M, int O>
+	Matrix<T, N, O> operator*(const Matrix<T, N, M>& lhs, const Matrix<T, M, O>& rhs)
+	{
+		T sum = 0;
+		Matrix<T, N, O> m;
+
+		int i, j, k;
+		for (i = 0; i < N; i++)
+		{
+			for (j = 0; j < M; j++)
+			{
+				for (k = 0; k < M; k++)
+				{
+					sum += lhs.data[i][k] * rhs.data[k][j];
+				}
+				m.data[i][j] = sum;
+				sum = 0;
+			}
+		}
+
+		return m;
+	}
+
+	//Row vector * Matrix
+	template<typename T, int rows, int cols>
+	Vector<T, rows> operator*(const Vector<T, rows>& v, const Matrix<T, rows, cols>& m)
+	{
+		Vector<T, rows> result;
+		T sum = 0;
+
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < rows; j++)
+			{
+				T test = v[j];
+				test = m.data[j][i];
+				sum += v[j] * m.data[j][i];
+			}
+			result[i] = sum;
+			sum = 0;
+		}
+
+		return result;
+	}
+
+	//Matrix * Column Vector
+	template<typename T, int rows, int cols>
+	Vector<T, cols> operator*(const Matrix<T, rows, cols>& m, const Vector<T, cols>& v)
+	{
+		Vector<T, cols> result;
+		T sum = 0;
+
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+			{
+				sum += m.data[i][j] * v[j];
+			}
+			result[i] = sum;
+			sum = 0;
+		}
+
+		return result;
+	}
+
+	template<typename T, int rows, int cols>
+	Matrix<T, cols, rows> Transpose(const Matrix<T, rows, cols>& m)
+	{
+		Matrix<T, cols, rows> mT;
+
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+			{
+				mT.data[i][j] = m.data[j][i];
+			}
+		}
+
+		return mT;
+	}
 	
 }//end ZMath
 

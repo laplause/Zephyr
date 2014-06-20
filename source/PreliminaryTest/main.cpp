@@ -21,6 +21,11 @@ int main()
 	r3 *= 2.0f;
 	r3 /= 2.0f;
 
+	r3 = Transpose(r3);
+	r4 = Transpose(r4);
+	c3 = Transpose(c3);
+	c4 = Transpose(c4);
+
 	r3 = r3 * 2.0f;
 	r3 = r3 / 2.0f;
 
