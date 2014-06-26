@@ -626,6 +626,21 @@ namespace ZMath
 
 		return mT;
 	}
+
+	float Determinant(const Mat3x3& m)
+	{
+		return m.m00*(m.m11*m.m22 - m.m12*m.m21) + m.m01*(m.m12*m.m20 - m.m10*m.m22) + m.m02*(m.m10*m.m21 - m.m11*m.m20);
+	}
+
+	float Determinant(const Mat4x4& m)
+	{
+		float det = 0;
+		det += m.m00*(m.m11*(m.m22*m.m33 - m.m23*m.m32) + m.m12*(m.m23*m.m31 - m.m21*m.m33) + m.m13*(m.m21*m.m32 - m.m22*m.m31));
+		det += -m.m01*(m.m10*(m.m22*m.m33 - m.m23*m.m32) + m.m12*(m.m23*m.m30 - m.m20*m.m33) + m.m13*(m.m20*m.m32 - m.m22*m.m30));
+		det += m.m02*(m.m10*(m.m21*m.m33 - m.m23*m.m31) + m.m11*(m.m23*m.m30 - m.m20*m.m33) + m.m13*(m.m20*m.m31 - m.m21*m.m30));
+		det += -m.m03*(m.m10*(m.m21*m.m32 - m.m22*m.m31) + m.m11*(m.m22*m.m30 - m.m20*m.m32) + m.m12*(m.m20*m.m31 - m.m21*m.m30));
+		return det;
+	}
 	
 }//end ZMath
 
