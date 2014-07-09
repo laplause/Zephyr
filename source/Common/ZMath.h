@@ -393,6 +393,7 @@ namespace ZMath
 		}
 	};
 
+	// Creation Functions
 	Mat3x3 CreateRowMatrix3x3(Vec3& rowX, Vec3& rowY, Vec3& rowZ)
 	{
 		Mat3x3 m;
@@ -403,15 +404,12 @@ namespace ZMath
 		return m;
 	}
 
-	Mat3x3 CreateColumnMatrix3x3(Vec3& columnX, Vec3& columnY, Vec3& columZ)
+	inline Mat3x3 CreateColumnMatrix3x3(Vec3& columnX, Vec3& columnY, Vec3& columZ)
 	{
-		Mat3x3 m(columnX.x, columnY.x, columZ.x, columnX.y, columnY.y, columZ.y, columnX.z, columnY.z, columZ.z);
-
-		return m;
+		return Mat3x3(columnX.x, columnY.x, columZ.x, columnX.y, columnY.y, columZ.y, columnX.z, columnY.z, columZ.z);
 	}
 
-	// Creation Functions
-	Mat3x3 CreateIdentity3x3()
+	inline Mat3x3 CreateIdentity3x3()
 	{
 		return Mat3x3(1.0f, 0, 0,
 					  0, 1.0f, 0,
@@ -429,15 +427,13 @@ namespace ZMath
 		return m;
 	}
 
-	Mat4x4 CreateColumnMatrix4x4(Vec4& columnX, Vec4& columnY, Vec4& columnZ, Vec4& columnW)
+	inline Mat4x4 CreateColumnMatrix4x4(Vec4& columnX, Vec4& columnY, Vec4& columnZ, Vec4& columnW)
 	{
-		Mat4x4 m(columnX.x, columnY.x, columnZ.x, columnW.x, columnX.y, columnY.y, columnZ.y, columnW.y,
+		return Mat4x4(columnX.x, columnY.x, columnZ.x, columnW.x, columnX.y, columnY.y, columnZ.y, columnW.y,
 			     columnX.z, columnY.z, columnZ.z, columnW.z, columnX.w, columnY.w, columnZ.w, columnW.w);
-
-		return m;
 	}
 
-	Mat4x4 CreateIdentity4x4()
+	inline Mat4x4 CreateIdentity4x4()
 	{
 		return Mat4x4(1.0f, 0, 0, 0,
 					  0, 1.0f, 0, 0,
@@ -483,7 +479,7 @@ namespace ZMath
 	}
 
 	template<typename T, int size>
-	T LengthSquared(Vector<T, size>& v)
+	inline T LengthSquared(Vector<T, size>& v)
 	{
 		T result = 0;
 		for (int i = 0; i < size; i++)
@@ -495,7 +491,7 @@ namespace ZMath
 	}
 
 	template<typename T, int size>
-	T Length(Vector<T, size>& v)
+	inline T Length(Vector<T, size>& v)
 	{
 		return sqrtf(LengthSquared<T, size>(v));
 	}
@@ -517,7 +513,7 @@ namespace ZMath
 	}
 
 	template<typename T, int size>
-	T Dot(const Vector<T, size>& lhs, const Vector<T, size>& rhs)
+	inline T Dot(const Vector<T, size>& lhs, const Vector<T, size>& rhs)
 	{
 		T result = 0;
 		for (int i = 0; i < size; i++)
@@ -528,7 +524,7 @@ namespace ZMath
 		return result;
 	}
 
-	Vec3 Cross(Vec3& lhs, Vec3& rhs)
+	inline Vec3 Cross(Vec3& lhs, Vec3& rhs)
 	{
 		return Vec3((lhs.y*rhs.z) - (lhs.z*rhs.y), (lhs.z*rhs.x) - (lhs.x*rhs.z), (lhs.x*rhs.y) - (lhs.y*rhs.x));
 	}
@@ -627,12 +623,12 @@ namespace ZMath
 		return mT;
 	}
 
-	float Determinant(const Mat3x3& m)
+	inline float Determinant(const Mat3x3& m)
 	{
 		return m.m00*(m.m11*m.m22 - m.m12*m.m21) + m.m01*(m.m12*m.m20 - m.m10*m.m22) + m.m02*(m.m10*m.m21 - m.m11*m.m20);
 	}
 
-	float Determinant(const Mat4x4& m)
+	inline float Determinant(const Mat4x4& m)
 	{
 		float det = 0;
 		det += m.m00*(m.m11*(m.m22*m.m33 - m.m23*m.m32) + m.m12*(m.m23*m.m31 - m.m21*m.m33) + m.m13*(m.m21*m.m32 - m.m22*m.m31));
@@ -640,6 +636,26 @@ namespace ZMath
 		det += m.m02*(m.m10*(m.m21*m.m33 - m.m23*m.m31) + m.m11*(m.m23*m.m30 - m.m20*m.m33) + m.m13*(m.m20*m.m31 - m.m21*m.m30));
 		det += -m.m03*(m.m10*(m.m21*m.m32 - m.m22*m.m31) + m.m11*(m.m22*m.m30 - m.m20*m.m32) + m.m12*(m.m20*m.m31 - m.m21*m.m30));
 		return det;
+	}
+
+	Mat3x3 Inverse(const Mat3x3& m)
+	{
+		// Determinant inverse to lower the amount of divisions
+		float oneOverDeterminant = 1/Determinant(m);
+		Mat3x3 mInverse;
+
+		//Matrix of Cofactors
+		mInverse.m00 = ((m.m11 * m.m22) - (m.m12 * m.m21))*oneOverDeterminant;
+		mInverse.m01 = ((m.m12 * m.m20) - (m.m10 * m.m22))*oneOverDeterminant;
+		mInverse.m02 = ((m.m10 * m.m21) - (m.m11 * m.m20))*oneOverDeterminant;
+		mInverse.m10 = ((m.m02 * m.m21) - (m.m01 * m.m22))*oneOverDeterminant;
+		mInverse.m11 = ((m.m00 * m.m22) - (m.m02 * m.m20))*oneOverDeterminant;
+		mInverse.m12 = ((m.m01 * m.m20) - (m.m00 * m.m21))*oneOverDeterminant;
+		mInverse.m20 = ((m.m01 * m.m12) - (m.m02 * m.m11))*oneOverDeterminant;
+		mInverse.m21 = ((m.m02 * m.m10) - (m.m00 * m.m12))*oneOverDeterminant;
+		mInverse.m22 = ((m.m00 * m.m11) - (m.m01 * m.m10))*oneOverDeterminant;
+
+		return Transpose<float, 3, 3>(mInverse);
 	}
 	
 }//end ZMath
