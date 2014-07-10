@@ -632,9 +632,9 @@ namespace ZMath
 	{
 		float det = 0;
 		det += m.m00*(m.m11*(m.m22*m.m33 - m.m23*m.m32) + m.m12*(m.m23*m.m31 - m.m21*m.m33) + m.m13*(m.m21*m.m32 - m.m22*m.m31));
-		det += -m.m01*(m.m10*(m.m22*m.m33 - m.m23*m.m32) + m.m12*(m.m23*m.m30 - m.m20*m.m33) + m.m13*(m.m20*m.m32 - m.m22*m.m30));
+		det += (-m.m01*(m.m10*(m.m22*m.m33 - m.m23*m.m32) + m.m12*(m.m23*m.m30 - m.m20*m.m33) + m.m13*(m.m20*m.m32 - m.m22*m.m30)));
 		det += m.m02*(m.m10*(m.m21*m.m33 - m.m23*m.m31) + m.m11*(m.m23*m.m30 - m.m20*m.m33) + m.m13*(m.m20*m.m31 - m.m21*m.m30));
-		det += -m.m03*(m.m10*(m.m21*m.m32 - m.m22*m.m31) + m.m11*(m.m22*m.m30 - m.m20*m.m32) + m.m12*(m.m20*m.m31 - m.m21*m.m30));
+		det += (-m.m03*(m.m10*(m.m21*m.m32 - m.m22*m.m31) + m.m11*(m.m22*m.m30 - m.m20*m.m32) + m.m12*(m.m20*m.m31 - m.m21*m.m30)));
 		return det;
 	}
 
@@ -656,6 +656,33 @@ namespace ZMath
 		mInverse.m22 = ((m.m00 * m.m11) - (m.m01 * m.m10))*oneOverDeterminant;
 
 		return Transpose<float, 3, 3>(mInverse);
+	}
+
+	Mat4x4 Inverse(const Mat4x4& m)
+	{
+		// Determinant inverse to lower the amount of divisions.
+		float oneOverDeterminant = 1 / Determinant(m);
+		Mat4x4 mInverse;
+
+		//Matrix of Cofactors
+		mInverse.m00 = (m.m11*(m.m22*m.m33 - m.m23*m.m32) + m.m12*(m.m23*m.m31 - m.m21*m.m33) + m.m13*(m.m21*m.m32 - m.m22*m.m31))*oneOverDeterminant;
+		mInverse.m01 = -(m.m10*(m.m22*m.m33 - m.m23*m.m32) + m.m12*(m.m23*m.m30 - m.m20*m.m33) + m.m13*(m.m20*m.m32 - m.m22*m.m30))*oneOverDeterminant;
+		mInverse.m02 = (m.m10*(m.m21*m.m33 - m.m23*m.m31) + m.m11*(m.m23*m.m30 - m.m20*m.m33) + m.m13*(m.m20*m.m31 - m.m21*m.m30))*oneOverDeterminant;
+		mInverse.m03 = -(m.m10*(m.m21*m.m32 - m.m22*m.m31) + m.m11*(m.m22*m.m30 - m.m20*m.m32) + m.m12*(m.m20*m.m31 - m.m21*m.m30))*oneOverDeterminant;
+		mInverse.m10 = -(m.m01*(m.m22*m.m33 - m.m23*m.m32) + m.m02*(m.m23*m.m31 - m.m21*m.m33) + m.m03*(m.m21*m.m32 - m.m22*m.m31))*oneOverDeterminant;
+		mInverse.m11 = (m.m00*(m.m22*m.m33 - m.m23*m.m32) + m.m02*(m.m23*m.m30 - m.m20*m.m33) + m.m03*(m.m20*m.m32 - m.m22*m.m30))*oneOverDeterminant;
+		mInverse.m12 = -(m.m00*(m.m21*m.m33 - m.m23*m.m31) + m.m01*(m.m23*m.m30 - m.m20*m.m33) + m.m03*(m.m20*m.m31 - m.m21*m.m30))*oneOverDeterminant;
+		mInverse.m13 = (m.m00*(m.m21*m.m32 - m.m22*m.m31) + m.m01*(m.m22*m.m30 - m.m20*m.m32) + m.m02*(m.m20*m.m31 - m.m21*m.m30))*oneOverDeterminant;
+		mInverse.m20 = (m.m01*(m.m12*m.m33 - m.m13*m.m32) + m.m02*(m.m13*m.m31 - m.m11*m.m33) + m.m03*(m.m11*m.m32 - m.m12*m.m31))*oneOverDeterminant;
+		mInverse.m21 = -(m.m00*(m.m12*m.m33 - m.m13*m.m32) + m.m02*(m.m13*m.m30 - m.m10*m.m33) + m.m03*(m.m10*m.m32 - m.m12*m.m30))*oneOverDeterminant;
+		mInverse.m22 = (m.m00*(m.m11*m.m33 - m.m13*m.m31) + m.m01*(m.m13*m.m30 - m.m10*m.m33) + m.m03*(m.m10*m.m31 - m.m11*m.m30))*oneOverDeterminant;
+		mInverse.m23 = -(m.m00*(m.m11*m.m32 - m.m12*m.m31) + m.m01*(m.m12*m.m30 - m.m10*m.m32) + m.m02*(m.m10*m.m31 - m.m11*m.m30))*oneOverDeterminant;
+		mInverse.m30 = -(m.m01*(m.m12*m.m23 - m.m13*m.m22) + m.m02*(m.m13*m.m21 - m.m11*m.m23) + m.m03*(m.m11*m.m22 - m.m12*m.m21))*oneOverDeterminant;
+		mInverse.m31 = (m.m00*(m.m12*m.m23 - m.m13*m.m22) + m.m02*(m.m13*m.m20 - m.m10*m.m23) + m.m03*(m.m10*m.m22 - m.m12*m.m20))*oneOverDeterminant;
+		mInverse.m32 = -(m.m00*(m.m11*m.m23 - m.m13*m.m21) + m.m01*(m.m13*m.m20 - m.m10*m.m23) + m.m03*(m.m10*m.m21 - m.m11*m.m20))*oneOverDeterminant;
+		mInverse.m33 = (m.m00*(m.m11*m.m22 - m.m12*m.m21) + m.m01*(m.m12*m.m20 - m.m10*m.m22) + m.m02*(m.m10*m.m21 - m.m11*m.m20))*oneOverDeterminant;
+
+		return Transpose<float, 4, 4>(mInverse);
 	}
 	
 }//end ZMath
