@@ -3,9 +3,9 @@ using namespace ZMath;
 
 int main()
 {
-	Vec3 x(12.0f, 0.0f, 0.0f);
-	Vec3 y(0.0f, 1.0f, 0.0f);
-	Vec3 z(0.0f, 0.0f, 2.0f);
+	Vec3 x(12.0f, 20.0f, 0.0f);
+	Vec3 y(-5.0f, 1.0f, 0.0f);
+	Vec3 z(100.0f, 5.0f, 2.0f);
 
 	Vec4 x4(1.0f, 0.0f, -6.0f, 0.0f);
 	Vec4 y4(2.0f, 21.0f, 3.0f, -5.0f);

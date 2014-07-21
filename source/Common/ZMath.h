@@ -406,7 +406,9 @@ namespace ZMath
 
 	inline Mat3x3 CreateColumnMatrix3x3(Vec3& columnX, Vec3& columnY, Vec3& columZ)
 	{
-		return Mat3x3(columnX.x, columnY.x, columZ.x, columnX.y, columnY.y, columZ.y, columnX.z, columnY.z, columZ.z);
+		return Mat3x3(columnX.x, columnY.x, columZ.x, 
+			          columnX.y, columnY.y, columZ.y, 
+					  columnX.z, columnY.z, columZ.z);
 	}
 
 	inline Mat3x3 CreateIdentity3x3()
@@ -429,8 +431,10 @@ namespace ZMath
 
 	inline Mat4x4 CreateColumnMatrix4x4(Vec4& columnX, Vec4& columnY, Vec4& columnZ, Vec4& columnW)
 	{
-		return Mat4x4(columnX.x, columnY.x, columnZ.x, columnW.x, columnX.y, columnY.y, columnZ.y, columnW.y,
-			     columnX.z, columnY.z, columnZ.z, columnW.z, columnX.w, columnY.w, columnZ.w, columnW.w);
+		return Mat4x4(columnX.x, columnY.x, columnZ.x, columnW.x, 
+			          columnX.y, columnY.y, columnZ.y, columnW.y,
+			          columnX.z, columnY.z, columnZ.z, columnW.z,
+					  columnX.w, columnY.w, columnZ.w, columnW.w);
 	}
 
 	inline Mat4x4 CreateIdentity4x4()
@@ -439,6 +443,36 @@ namespace ZMath
 					  0, 1.0f, 0, 0,
 					  0, 0, 1.0f, 0,
 					  0, 0, 0, 1.0f);
+	}
+
+	// This is a left handed orthographic projection column matrix which uses a view volume depth of 0 to 1
+	inline Mat4x4 DirectXOrthoMatrix(float l, float r, float t, float b, float n, float f)
+	{
+		return Mat4x4(2/r-l,   0,       0,     0,
+			          0,       2/t-b,   0,     0,
+					  0,       0,       1/f-n, 0,
+					  l+r/l-r, t+b/b-t, n/n-f, 1);
+	}
+
+	// This is a left handed orthographic proection column matrix which uses a view volume depth of 0 to 1
+	inline Mat4x4 DirectXOrthoMatrix(float width, float height, float n, float f)
+	{
+		return Mat4x4(2/width, 0,        0,     0,
+			          0,       2/height, 0,     0,
+					  0,       0,        1/f-n, 0,
+					  0,       0,        n/n-f, 1);
+	}
+
+	// This is a left handed perspective projection column matrix which uses a frustrum depth of 0 to 1
+	inline Mat4x4 DirectXPerspectiveMatrix(float fovY, float aspectRatio, float n, float f)
+	{
+		float zoomY = 1 / tan(fovY / 2);
+		float zoomX = zoomY / aspectRatio;
+
+		return Mat4x4(zoomX, 0,     0,        0,
+			          0,     zoomY, 0,        0,
+			          0,     0,     f/f-n,    1,
+			          0,     0,     -n*f/f-n, 0);
 	}
 
 	// Vector operations
