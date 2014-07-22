@@ -475,6 +475,42 @@ namespace ZMath
 			          0,     0,     -n*f/f-n, 0);
 	}
 
+	// This is a left handed rotation column matrix which rotates about the X axis.
+	inline Mat4x4 MatrixRotationX(float angle)
+	{
+		float sinOfAngle = sin(angle);
+		float cosOfAngle = cos(angle);
+
+		return Mat4x4(1, 0,           0,          0,
+			          0, cosOfAngle,  sinOfAngle, 0,
+			          0, -sinOfAngle, cosOfAngle, 0,
+			          0, 0,           0,          1);
+	}
+
+	// This is a left handed rotation column matrix which rotates about the Y axis.
+	inline Mat4x4 MatrixRotationY(float angle)
+	{
+		float sinOfAngle = sin(angle);
+		float cosOfAngle = cos(angle);
+
+		return Mat4x4(cosOfAngle, 0, -sinOfAngle, 0,
+			          0,          1, 0,           0,
+					  sinOfAngle, 0, cosOfAngle,  0,
+			          0,          0, 0,           1);
+	}
+
+	// This is a left handed rotation column matrix which rotates about the Z axis.
+	inline Mat4x4 MatrixRotationZ(float angle)
+	{
+		float sinOfAngle = sin(angle);
+		float cosOfAngle = cos(angle);
+
+		return Mat4x4(cosOfAngle,  sinOfAngle, 0, 0,
+			          -sinOfAngle, cosOfAngle, 0, 0,
+			          0,           0,          1, 0,
+			          0,           0,          0, 1);
+	}
+
 	// Vector operations
 	template<typename T, int size>
 	Vector<T, size> Add(Vector<T, size>& lhs, const Vector<T, size>& rhs)
