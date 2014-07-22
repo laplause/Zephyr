@@ -567,7 +567,7 @@ namespace ZMath
 	}
 
 	template<typename T, int size>
-	Vector<T, size> Normalize(Vector<T, size>& v)
+	inline Vector<T, size> Normalize(Vector<T, size>& v)
 	{
 		T length = Length<T, size>(v);
 
@@ -646,8 +646,6 @@ namespace ZMath
 		{
 			for (int j = 0; j < rows; j++)
 			{
-				T test = v[j];
-				test = m.data[j][i];
 				sum += v[j] * m.data[j][i];
 			}
 			result[i] = sum;
