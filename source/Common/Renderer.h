@@ -10,6 +10,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include "SystemWindow.h"
+
 namespace RenderCore
 {
 	//Abstract base class that defines the essentials of a renderer.
