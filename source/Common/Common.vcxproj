@@ -68,6 +68,12 @@ copy "$(ProjectDir)*.h" "$(SolutionDir)..\include"</Command>
 copy "$(ProjectDir)$(Configuration)\$(ProjectName)D.lib" "$(SolutionDir)..\lib\$(ProjectName)D.lib"
 </Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>d3d11.lib;d3dx11.lib;d3dx11d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -93,16 +99,25 @@ copy "$(ProjectDir)*.h" "$(SolutionDir)..\include"</Command>
       <Command>mkdir "$(SolutionDir)..\lib"
 copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(ProjectName).lib"</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>d3d11.lib;d3dx11.lib;d3dx11d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\EngineState.h" />
-    <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Renderer.h" />
-    <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\SystemWindow.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="DirectXRenderer.h" />
+    <ClInclude Include="EngineState.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SystemWindow.h" />
     <ClInclude Include="ZMath.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Renderer.cpp" />
-    <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\SystemWindow.cpp" />
+    <ClCompile Include="DirectXRenderer.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="SystemWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

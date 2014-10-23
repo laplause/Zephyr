@@ -18,21 +18,30 @@
     <ClInclude Include="ZMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Renderer.h">
+    <ClInclude Include="EngineState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\SystemWindow.h">
+    <ClInclude Include="Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\EngineState.h">
+    <ClInclude Include="SystemWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Renderer.cpp">
+    <ClCompile Include="SystemWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\SystemWindow.cpp">
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

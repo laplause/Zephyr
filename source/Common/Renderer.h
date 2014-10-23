@@ -18,7 +18,7 @@ namespace RenderCore
 	class Renderer
 	{
 	public:
-		Renderer(unsigned int screenWidth, unsigned int screenHeight, bool fullScreen);
+		Renderer();
 		virtual ~Renderer();
 
 		virtual void Initialize() = 0;
@@ -28,8 +28,9 @@ namespace RenderCore
 
 	protected:
 		unsigned int mScreenWidth;
-		unsigned int mScreenHeight;
-		bool mFullScreen;
+		unsigned int mScreeHeight;
+		bool mIsFullScreen;
+		SystemWindow* mWindow;
 	};
 }
 #endif

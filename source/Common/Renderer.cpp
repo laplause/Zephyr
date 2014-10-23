@@ -11,8 +11,8 @@
 
 namespace RenderCore
 {
-	Renderer::Renderer(unsigned int screenWidth, unsigned int screenHeight, bool fullScreen) : mScreenWidth(screenWidth),
-	mScreenHeight(screenHeight), mFullScreen(fullScreen)
+	Renderer::Renderer() : mScreenWidth(800),
+	mScreeHeight(600), mIsFullScreen(false)
 	{
 
 	}

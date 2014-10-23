@@ -1,12 +1,12 @@
-#include "SystemWindow.h"
+#include "DirectXRenderer.h"
 using namespace RenderCore;
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandLine, int showCommand)
 {
-	SystemWindow l(instance, L"RenderWindow", L"blah", showCommand);
-	l.Initialize();
+	DirectXRenderer dx(instance, L"RenderWindow", L"blah", showCommand);
 
-	int a = 0;
+	dx.Initialize();
+
 	MSG message;
 	ZeroMemory(&message, sizeof(message));
 
@@ -19,11 +19,12 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandL
 		}
 		else
 		{
-			a++;
+			dx.Update();
+			dx.Draw();
 		}
 	}
 
-	l.Shutdown();
+	dx.Shutdown();
 
 	return 0;
 }

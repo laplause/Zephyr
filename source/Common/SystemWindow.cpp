@@ -1,12 +1,13 @@
 #include "SystemWindow.h"
 using namespace RenderCore;
 
-#if WINDOWS
+#if defined WINDOWS
 SystemWindow::SystemWindow(HINSTANCE instance, const std::wstring& windowClass, const std::wstring& windowTitle, int showCommand) : mInstance(instance),
 mWindowClass(windowClass), mWindowTitle(windowTitle), mShowCommand(showCommand), mWindowHandle(NULL)
 {
 	mScreenWidth = SCREEN_WIDTH;
 	mScreeHeight = SCREEN_HEIGHT;
+	mIsFullScreen = FULL_SCREEN;
 }
 
 POINT SystemWindow::CenterWindow(unsigned int windowWidth, unsigned int windowHeight)
@@ -29,6 +30,7 @@ POINT SystemWindow::CenterWindow(unsigned int windowWidth, unsigned int windowHe
 		ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN);
 
 		center.x = center.y = 0;
+		mIsFullScreen = true;
 	}
 	else
 	{
@@ -38,6 +40,16 @@ POINT SystemWindow::CenterWindow(unsigned int windowWidth, unsigned int windowHe
 #pragma warning(default:4127)
 
 	return center;
+}
+
+const HWND SystemWindow::GetWindowHandle() const
+{
+	if (mWindowHandle == NULL)
+	{
+		//TODO: Some kind of fatal asset logic here.
+	}
+
+	return mWindowHandle;
 }
 
 LRESULT WINAPI SystemWindow::WndProc(HWND windowHandle, unsigned int message, WPARAM wParam, LPARAM lParam)
@@ -60,7 +72,7 @@ SystemWindow::~SystemWindow()
 
 void SystemWindow::Initialize()
 {
-#if WINDOWS
+#if defined WINDOWS
 	ZeroMemory(&mWindow, sizeof(mWindow));
 	mWindow.cbSize = sizeof(WNDCLASSEX);
 	mWindow.style = CS_CLASSDC;
@@ -86,12 +98,27 @@ void SystemWindow::Initialize()
 
 void SystemWindow::Shutdown()
 {
-#if WINDOWS
+#if defined WINDOWS
 	// Remove the window
 	DestroyWindow(mWindowHandle);
 	mWindowHandle = nullptr;
 
 	// Remove the application instance
-	UnregisterClass((LPCSTR)mWindowTitle.c_str(), mInstance);
+	UnregisterClass((LPCSTR)mWindowClass.c_str(), mInstance);
 #endif
+}
+
+const unsigned int SystemWindow::ScreenWidth() const
+{
+	return mScreenWidth;
+}
+
+const unsigned int SystemWindow::ScreenHeight() const
+{
+	return mScreeHeight;
+}
+
+const bool SystemWindow::IsFullScreen() const
+{
+	return mIsFullScreen;
 }

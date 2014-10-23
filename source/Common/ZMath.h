@@ -278,10 +278,6 @@ namespace ZMath
 		}
 	};
 
-	// Common Matrix typedefs
-	typedef Matrix<float, 3, 3> Mat3x3;
-	typedef Matrix<float, 4, 4> Mat4x4;
-
 	// Partial Matrix specializations with .m00 .m01 .row1 .row2 etc.. access
 	template<typename T>
 	struct Matrix<T, 3, 3>
@@ -393,8 +389,12 @@ namespace ZMath
 		}
 	};
 
+	// Common Matrix typedefs
+	typedef Matrix<float, 3, 3> Mat3x3;
+	typedef Matrix<float, 4, 4> Mat4x4;
+
 	// Creation Functions
-	Mat3x3 CreateRowMatrix3x3(Vec3& rowX, Vec3& rowY, Vec3& rowZ)
+	inline Mat3x3 CreateRowMatrix3x3(Vec3& rowX, Vec3& rowY, Vec3& rowZ)
 	{
 		Mat3x3 m;
 		m.row0 = rowX;
@@ -418,7 +418,7 @@ namespace ZMath
 					  0, 0, 1.0f);
 	}
 
-	Mat4x4 CreateRowMatrix4x4(Vec4& rowX, Vec4& rowY, Vec4& rowZ, Vec4& rowW)
+	inline Mat4x4 CreateRowMatrix4x4(Vec4& rowX, Vec4& rowY, Vec4& rowZ, Vec4& rowW)
 	{
 		Mat4x4 m;
 		m.row0 = rowX;
@@ -706,7 +706,7 @@ namespace ZMath
 		return det;
 	}
 
-	Mat3x3 Inverse(const Mat3x3& m)
+	inline Mat3x3 Inverse(const Mat3x3& m)
 	{
 		// Determinant inverse to lower the amount of divisions
 		float oneOverDeterminant = 1/Determinant(m);
@@ -726,7 +726,7 @@ namespace ZMath
 		return Transpose<float, 3, 3>(mInverse);
 	}
 
-	Mat4x4 Inverse(const Mat4x4& m)
+	inline Mat4x4 Inverse(const Mat4x4& m)
 	{
 		// Determinant inverse to lower the amount of divisions.
 		float oneOverDeterminant = 1 / Determinant(m);
