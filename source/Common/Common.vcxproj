@@ -112,6 +112,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SystemWindow.h" />
+    <ClInclude Include="ZAssert.h" />
     <ClInclude Include="ZMath.h" />
   </ItemGroup>
   <ItemGroup>

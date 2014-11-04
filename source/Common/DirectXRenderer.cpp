@@ -1,5 +1,5 @@
 #include "DirectXRenderer.h"
-#include "Common.h"
+#include "ZAssert.h"
 using namespace RenderCore;
 
 DirectXRenderer::DirectXRenderer(HINSTANCE instance, const std::wstring& windowClass, const std::wstring& windowTitle, int showCommand)
@@ -71,10 +71,9 @@ void DirectXRenderer::InitializeDirectX()
 	};
 
 	// Create the Direct3D device and device context
-	if (FAILED(hr = D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, createDeviceFlags, featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, &mDirect3DDevice, &mFeatureLevel, &mDirect3DDeviceContext)))
-	{
-		//TODO: Some debug fail code.
-	}
+	D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, createDeviceFlags, featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, &mDirect3DDevice, &mFeatureLevel, &mDirect3DDeviceContext);
+	ZEPHYR_ASSERT(NULL != mDirect3DDevice, "Error creating D3D device");
+	ZEPHYR_ASSERT(mDirect3DDeviceContext != NULL, "Error creating D3D device context");
 
 	// Check for multi sampling support
 	mDirect3DDevice->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, mMultiSamplingCount, &mMultiSamplingQualityLevels);
@@ -106,10 +105,8 @@ void DirectXRenderer::InitializeDirectX()
 
 	// Create the swap chain.
 	IDXGIDevice* dxgiDevice = nullptr;
-	if (FAILED(hr = mDirect3DDevice->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&dxgiDevice))))
-	{
-		//TODO: some kind of error checking that querinterface failed
-	}
+	mDirect3DDevice->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&dxgiDevice));
+	ZEPHYR_ASSERT(dxgiDevice != NULL, "Error Creating dxgiDevice");
 
 	IDXGIAdapter* dxgiAdapter = nullptr;
 	if (FAILED(hr = dxgiDevice->GetParent(__uuidof(IDXGIAdapter), reinterpret_cast<void**>(&dxgiAdapter))))

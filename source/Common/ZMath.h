@@ -2,7 +2,7 @@
 //	Author: Christopher Sosa																	 //
 //																								 //
 //	This is an implementaion of a scalar vector math library for use in the						 //
-//	Zephyr game/graphics engine.																		 //
+//	Zephyr game/graphics engine.															     //
 //																								 //
 //	Majority of implementation inspired by Nathan Reed's blog						             //
 //	On Vector Math Libraries	                                                                 //

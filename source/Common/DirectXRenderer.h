@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//	Author: Christopher Sosa																	 //
+//																								 //
+//	This is a base renderer that use the DirectX API. Derive from this to create a custom		 //
+//  DX renderer that uses forward rendering. A deffered renderer could be made from this base    //
+//                                                                                               //
+// Majority of implemetation inspired by Realt Time 3D Rendering with DIRECTX and HLSL           //
+// Paul VArcholik                                                                                //
+//                                                                                               //
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #ifndef DIRECTXRENDERER_H
 #define DIRECTXRENDERER_H
 
