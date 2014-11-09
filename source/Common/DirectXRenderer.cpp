@@ -218,9 +218,5 @@ void DirectXRenderer::Draw()
 	mDirect3DDeviceContext->ClearRenderTargetView(mRenderTargertView, reinterpret_cast<const float*>(mBackGroundColor.data));
 	mDirect3DDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	HRESULT hr = mSwapChain->Present(0, 0);
-	if (FAILED(hr))
-	{
-		//TODO: some code to signify that present failed
-	}
+	mSwapChain->Present(0, 0);
 }

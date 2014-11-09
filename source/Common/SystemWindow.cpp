@@ -1,4 +1,5 @@
 #include "SystemWindow.h"
+#include "ZAssert.h"
 using namespace RenderCore;
 
 #if defined WINDOWS
@@ -44,11 +45,7 @@ POINT SystemWindow::CenterWindow(unsigned int windowWidth, unsigned int windowHe
 
 const HWND SystemWindow::GetWindowHandle() const
 {
-	if (mWindowHandle == NULL)
-	{
-		//TODO: Some kind of fatal asset logic here.
-	}
-
+	ZEPHYR_ASSERT(mWindowHandle != NULL, "Something went wrong the Window handle was null.");
 	return mWindowHandle;
 }
 

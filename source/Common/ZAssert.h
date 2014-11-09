@@ -15,7 +15,7 @@
 
 namespace ZAssert
 {
-	void ReportFailure(const char* condition, const char* fileName, int line, const char* msg);
+	static void ReportFailure(const char* condition, const char* fileName, int line, const char* msg);
 
 #if defined WINDOWS
 #define ZEPHYR_HALT() __debugbreak();
@@ -35,7 +35,7 @@ namespace ZAssert
 	do { (void)sizeof(condition); } while(0)
 #endif
 
-	void ReportFailure(const char* condition, const char* fileName, int line, const char* msg)
+	static void ReportFailure(const char* condition, const char* fileName, int line, const char* msg)
 	{
 		char errorMessage[1024] = {0};
 		char lineNumber[6] = { 0 };

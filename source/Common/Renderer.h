@@ -11,19 +11,21 @@
 #define RENDERER_H
 
 #include "SystemWindow.h"
+#include "System.h"
+using namespace Core;
 
 namespace RenderCore
 {
 	//Abstract base class that defines the essentials of a renderer.
-	class Renderer
+	class Renderer : public System
 	{
 	public:
 		Renderer();
 		virtual ~Renderer();
 
-		virtual void Initialize() = 0;
-		virtual void Shutdown() = 0;
-		virtual void Update() = 0;
+		virtual void Initialize();
+		virtual void Shutdown();
+		virtual void Update();
 		virtual void Draw() = 0;
 
 	protected:

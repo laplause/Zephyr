@@ -1,4 +1,5 @@
 #include "DirectXRenderer.h"
+#include "Mesh.h"
 using namespace RenderCore;
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandLine, int showCommand)
