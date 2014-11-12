@@ -6,6 +6,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandL
 {
 	DirectXRenderer dx(instance, L"RenderWindow", L"blah", showCommand);
 
+	dx.CreateRenderable("blah", "boo");
 	dx.Initialize();
 
 	MSG message;

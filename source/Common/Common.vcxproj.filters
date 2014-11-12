@@ -57,6 +57,9 @@
     <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\ModelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SystemWindow.cpp">
@@ -87,6 +90,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\ModelManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

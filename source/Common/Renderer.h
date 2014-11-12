@@ -12,6 +12,9 @@
 
 #include "SystemWindow.h"
 #include "System.h"
+#include "Renderable.h"
+#include <vector>
+#include <string>
 using namespace Core;
 
 namespace RenderCore
@@ -21,6 +24,7 @@ namespace RenderCore
 	{
 	public:
 		Renderer();
+		Renderer(unsigned int renderListSize);
 		virtual ~Renderer();
 
 		virtual void Initialize();
@@ -28,10 +32,15 @@ namespace RenderCore
 		virtual void Update();
 		virtual void Draw() = 0;
 
+		void CreateRenderable(const std::string& meshName, const std::string& materialName);
+
 	protected:
+		const unsigned int GetNextUnusedRenderable();
+
 		unsigned int mScreenWidth;
 		unsigned int mScreeHeight;
 		bool mIsFullScreen;
+		std::vector<Renderable> mRenderList;
 		SystemWindow* mWindow;
 	};
 }

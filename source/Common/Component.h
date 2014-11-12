@@ -18,9 +18,9 @@ namespace Core
 		virtual ~Component();
 
 		const bool IsAssigned() const;
+		void Assign();
 		const unsigned int GetId() const;
-
-		virtual void Initialize() = 0;
+		void SetId(const unsigned int newId);
 
 	protected:
 		unsigned int mId;

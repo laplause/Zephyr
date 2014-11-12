@@ -28,7 +28,7 @@ namespace RenderCore
 
 		virtual void Initialize(const std::string& meshName, const std::string& materialName);
 
-	private:
+	protected:
 		Material* mMaterial;
 		Mesh* mMesh;
 	};

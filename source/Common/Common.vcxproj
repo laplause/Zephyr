@@ -111,6 +111,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(
     <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Material.h" />
     <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Mesh.h" />
     <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Model.h" />
+    <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\ModelManager.h" />
     <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Renderable.h" />
     <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\System.h" />
     <ClInclude Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Texture.h" />
@@ -127,6 +128,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(
     <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Material.cpp" />
     <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Mesh.cpp" />
     <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Model.cpp" />
+    <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\ModelManager.cpp" />
     <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Renderable.cpp" />
     <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\System.cpp" />
     <ClCompile Include="..\..\..\..\..\Chris%27 Shit\C++ Projects\Zephyr\source\Common\Texture.cpp" />
