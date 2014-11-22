@@ -65,6 +65,12 @@ namespace RenderCore
 				return count;
 		}
 
+		if (count == mRenderList.size())
+		{
+			count = mRenderList.size() + 1;
+			mRenderList.resize(mRenderList.size() + mRenderList.size());
+		}
+
 		return count;
 	}
 }

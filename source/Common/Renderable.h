@@ -14,6 +14,7 @@
 
 #include "Component.h"
 #include <string>
+#include <d3d11_1.h>
 
 namespace RenderCore
 {
@@ -27,6 +28,8 @@ namespace RenderCore
 		virtual ~Renderable();
 
 		virtual void Initialize(const std::string& meshName, const std::string& materialName);
+		virtual void Update();
+		virtual void Draw(ID3D11DeviceContext* deviceContext);
 
 	protected:
 		Material* mMaterial;

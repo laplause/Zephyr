@@ -12,6 +12,7 @@
 
 #include <d3d11_1.h>
 #include <string>
+#include "DirectXRenderer.h"
 
 namespace RenderCore
 {
@@ -22,7 +23,8 @@ namespace RenderCore
 		Material(const std::string& materialName);
 		virtual ~Material();
 
-		virtual void Initialize(const std::string& vsFileName, const std::string& psFileName) = 0;
+		virtual void Initialize(const std::string& vsFileName, const std::string& psFileName, DirectXRenderer* renderer) = 0;
+		ID3D11InputLayout* GetInputLayout() const;
 
 	protected:
 		ID3D11VertexShader* mpVertexShader;

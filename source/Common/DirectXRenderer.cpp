@@ -210,13 +210,23 @@ void DirectXRenderer::InitializeDirectX()
 
 void DirectXRenderer::Update()
 {
-
+	for (unsigned int i = 0; i < mRenderList.size(); i++)
+	{
+		if (mRenderList[i].IsAssigned())
+			mRenderList[i].Update();
+	}
 }
 
 void DirectXRenderer::Draw()
 {
 	mDirect3DDeviceContext->ClearRenderTargetView(mRenderTargertView, reinterpret_cast<const float*>(mBackGroundColor.data));
 	mDirect3DDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+
+	for (unsigned int i = 0; i < mRenderList.size(); i++)
+	{
+		if (mRenderList[i].IsAssigned())
+			mRenderList[i].Draw(mDirect3DDeviceContext);
+	}
 
 	mSwapChain->Present(0, 0);
 }

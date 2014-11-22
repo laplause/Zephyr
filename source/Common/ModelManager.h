@@ -10,8 +10,13 @@
 #ifndef MODELMANAGER_H
 #define MODELMANAGER_H
 
+#include <map>
+#include <string>
+
 namespace RenderCore
 {
+	class Mesh;
+
 	class ModelManager
 	{
 	public:
@@ -19,11 +24,16 @@ namespace RenderCore
 		static ModelManager* CreateInstance();
 		static ModelManager* GetModelManager();
 		void Shutdown();
+		void AddModel(const std::string& modelName, Mesh* mesh);
+		Mesh* GetModel(const std::string& modelName);
 
 	private:
-		// Hide the constructor since this is a singleton.
+		// Hide the constructors since this is a singleton.
 		ModelManager();
+		ModelManager(const ModelManager& rhs);
+		ModelManager& operator=(const ModelManager& rhs);
 
+		std::map<std::string, Mesh*> meshTable;
 		static ModelManager *m_sInstance;
 	};
 }

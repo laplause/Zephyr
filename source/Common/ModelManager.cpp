@@ -25,5 +25,21 @@ ModelManager* ModelManager::CreateInstance()
 
 ModelManager* ModelManager::GetModelManager()
 {
-	return m_sInstance;
+	if (m_sInstance != nullptr)
+		return m_sInstance;
+	else
+		return CreateInstance();
+}
+
+void ModelManager::AddModel(const std::string& modelName, Mesh* mesh)
+{
+	meshTable[modelName] = mesh;
+}
+
+Mesh* ModelManager::GetModel(const std::string& modelName)
+{
+	if (meshTable.find(modelName) != meshTable.end() && meshTable.find(modelName)->second != nullptr)
+		return meshTable[modelName];
+	else
+		return nullptr;
 }
