@@ -27,8 +27,19 @@ namespace RenderCore
 		ID3D11InputLayout* GetInputLayout() const;
 
 	protected:
+
+		struct ShaderBlob
+		{
+			char* shaderData;
+			unsigned int fileSize;
+			ShaderBlob();
+			~ShaderBlob();
+		};
+
 		ID3D11VertexShader* mpVertexShader;
 		ID3D11PixelShader* mpPixelShader;
+		ShaderBlob* mpVertexShaderBlob;
+		ShaderBlob* mpPixelShaderBlob;
 		ID3D11InputLayout* mpInputLayout;
 		std::string mName;
 	};
