@@ -5,7 +5,7 @@
 using namespace RenderCore;
 
 Material::Material(const std::string& materialName) : mName(materialName), mpVertexShader(NULL), mpPixelShader(NULL), mpInputLayout(NULL),
-mpVertexShaderBuffer(nullptr), mpPixelShaderBuffer(nullptr)
+mpVertexShaderBlob(nullptr), mpPixelShaderBlob(nullptr)
 {
 
 }
