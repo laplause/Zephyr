@@ -245,6 +245,12 @@ namespace ZMath
 		}
 	};
 
+	// Commonly used vectors
+	static const Vec3 Zero = Vec3();
+	static const Vec3 Forward = Vec3(0.0f, 0.0f, 1.0f);
+	static const Vec3 Up = Vec3(0.0f, 1.0f, 0.0f);
+	static const Vec3 Right = Vec3(1.0f, 0.0f, 0.0f);
+
 	// Templated by type and size Matrix
 	template<typename T, int rows, int cols>
 	struct Matrix
@@ -443,36 +449,6 @@ namespace ZMath
 					  0, 1.0f, 0, 0,
 					  0, 0, 1.0f, 0,
 					  0, 0, 0, 1.0f);
-	}
-
-	// This is a left handed orthographic projection column matrix which uses a view volume depth of 0 to 1
-	inline Mat4x4 DirectXOrthoMatrix(float l, float r, float t, float b, float n, float f)
-	{
-		return Mat4x4(2/r-l,   0,       0,     0,
-			          0,       2/t-b,   0,     0,
-					  0,       0,       1/f-n, 0,
-					  l+r/l-r, t+b/b-t, n/n-f, 1);
-	}
-
-	// This is a left handed orthographic proection column matrix which uses a view volume depth of 0 to 1
-	inline Mat4x4 DirectXOrthoMatrix(float width, float height, float n, float f)
-	{
-		return Mat4x4(2/width, 0,        0,     0,
-			          0,       2/height, 0,     0,
-					  0,       0,        1/f-n, 0,
-					  0,       0,        n/n-f, 1);
-	}
-
-	// This is a left handed perspective projection column matrix which uses a frustrum depth of 0 to 1
-	inline Mat4x4 DirectXPerspectiveMatrix(float fovY, float aspectRatio, float n, float f)
-	{
-		float zoomY = 1 / tan(fovY / 2);
-		float zoomX = zoomY / aspectRatio;
-
-		return Mat4x4(zoomX, 0,     0,        0,
-			          0,     zoomY, 0,        0,
-			          0,     0,     f/f-n,    1,
-			          0,     0,     -n*f/f-n, 0);
 	}
 
 	// This is a left handed rotation column matrix which rotates about the X axis.
@@ -751,6 +727,52 @@ namespace ZMath
 		mInverse.m33 = (m.m00*(m.m11*m.m22 - m.m12*m.m21) + m.m01*(m.m12*m.m20 - m.m10*m.m22) + m.m02*(m.m10*m.m21 - m.m11*m.m20))*oneOverDeterminant;
 
 		return Transpose<float, 4, 4>(mInverse);
+	}
+
+	// This is a left handed view matrix created from a camera position, up vector, and lookAt position
+	inline Mat4x4 DirectXViewMatrix(Vec3& cameraPosition, Vec3& lookingDirection, Vec3& up)
+	{
+		Vec3 zAxis = Normalize(lookingDirection);
+		Vec3 xAxis = Cross(up, zAxis);
+		xAxis = Normalize(xAxis);
+		Vec3 yAxis = Cross(zAxis, xAxis);
+		
+		return Mat4x4(xAxis.x, xAxis.y, xAxis.z, -Dot(cameraPosition, xAxis),
+			          yAxis.x, yAxis.y, yAxis.z, -Dot(cameraPosition, yAxis),
+					  zAxis.x, zAxis.y, zAxis.z, -Dot(cameraPosition, zAxis),
+			          0,       0,       0,       1);
+	}
+
+	// This is a left handed orthographic projection column matrix which uses a view volume depth of 0 to 1
+	// TODO: Transpose this matrix
+	inline Mat4x4 DirectXOrthoMatrix(float l, float r, float t, float b, float n, float f)
+	{
+		return Mat4x4(2 / r - l, 0, 0, 0,
+			0, 2 / t - b, 0, 0,
+			0, 0, 1 / f - n, 0,
+			l + r / l - r, t + b / b - t, n / n - f, 1);
+	}
+
+	// This is a left handed orthographic proejction column matrix which uses a view volume depth of 0 to 1
+	//TODO: Transpose this matrix
+	inline Mat4x4 DirectXOrthoMatrix(float width, float height, float n, float f)
+	{
+		return Mat4x4(2 / width, 0, 0, 0,
+			0, 2 / height, 0, 0,
+			0, 0, 1 / f - n, 0,
+			0, 0, n / n - f, 1);
+	}
+
+	// This is a left handed perspective projection column matrix which uses a frustrum depth of 0 to 1
+	inline Mat4x4 DirectXPerspectiveMatrix(float fovY, float aspectRatio, float n, float f)
+	{
+		float zoomY = 1 / tan(fovY / 2);
+		float zoomX = zoomY * aspectRatio;
+
+		return Mat4x4(zoomX, 0,     0,         0,
+			          0,     zoomY, 0,         0,
+			          0,     0,     f / f - n, -n*f / f - n,
+			          0,     0,     1,         0);
 	}
 	
 }//end ZMath

@@ -30,7 +30,5 @@ private:
 		Vec3 position;
 		Vec4 color;
 	};
-
-	Vertex* mpVetices;
 };
 #endif

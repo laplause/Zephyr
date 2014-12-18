@@ -1,11 +1,10 @@
 #include "Material.h"
-#include "ZAssert.h"
 #include "Common.h"
 #include <fstream>
 using namespace RenderCore;
 
 Material::Material(const std::string& materialName) : mName(materialName), mpVertexShader(NULL), mpPixelShader(NULL), mpInputLayout(NULL),
-mpVertexShaderBlob(nullptr), mpPixelShaderBlob(nullptr)
+mpVertexShaderByteCode(nullptr), mpPixelShaderByteCode(nullptr), mVertexShaderFileSize(0), mPixelShaderFileSize(0)
 {
 
 }
@@ -20,48 +19,41 @@ Material::~Material()
 void Material::Initialize(const std::string& vsFileName, const std::string& psFileName, DirectXRenderer* renderer)
 {
 	std::ifstream shaderFileStream;
-	mpVertexShaderBlob = new ShaderBlob();
-	mpPixelShaderBlob = new ShaderBlob();
 
 	shaderFileStream.open(vsFileName.c_str(), std::ifstream::in | std::ifstream::binary);
 	if (shaderFileStream.good())
 	{
 		shaderFileStream.seekg(0, std::ios::end);
-		mpVertexShaderBlob->fileSize = (unsigned int)shaderFileStream.tellg();
-		mpVertexShaderBlob->shaderData = new char[mpVertexShaderBlob->fileSize];
+		mVertexShaderFileSize = (unsigned int)shaderFileStream.tellg();
+		mpVertexShaderByteCode = new char[mVertexShaderFileSize];
 		shaderFileStream.seekg(0, std::ios::beg);
-		shaderFileStream.read(&(mpVertexShaderBlob->shaderData[0]), mpVertexShaderBlob->fileSize);
+		shaderFileStream.read(mpVertexShaderByteCode, mVertexShaderFileSize);
 		shaderFileStream.close();
 
-		renderer->Direct3DDevice()->CreateVertexShader(mpVertexShaderBlob->shaderData, mpVertexShaderBlob->fileSize, NULL, &mpVertexShader);
+		renderer->Direct3DDevice()->CreateVertexShader(mpVertexShaderByteCode, mVertexShaderFileSize, NULL, &mpVertexShader);
 	}
 
 	shaderFileStream.open(psFileName.c_str(), std::ifstream::in | std::ifstream::binary);
 	if (shaderFileStream.good())
 	{
 		shaderFileStream.seekg(0, std::ios::end);
-		mpPixelShaderBlob->fileSize = (unsigned int)shaderFileStream.tellg();
-		mpPixelShaderBlob->shaderData = new char[mpPixelShaderBlob->fileSize];
+		mPixelShaderFileSize = (unsigned int)shaderFileStream.tellg();
+		mpPixelShaderByteCode = new char[mPixelShaderFileSize];
 		shaderFileStream.seekg(0, std::ios::beg);
-		shaderFileStream.read(&mpPixelShaderBlob->shaderData[0], mpPixelShaderBlob->fileSize);
+		shaderFileStream.read(mpPixelShaderByteCode, mPixelShaderFileSize);
 		shaderFileStream.close();
 
-		renderer->Direct3DDevice()->CreatePixelShader(mpPixelShaderBlob->shaderData, mpPixelShaderBlob->fileSize, NULL, &mpPixelShader);
+		renderer->Direct3DDevice()->CreatePixelShader(mpPixelShaderByteCode, mPixelShaderFileSize, NULL, &mpPixelShader);
 	}
 }
 
-ID3D11InputLayout* Material::GetInputLayout() const
+void Material::SetActiveShader(ID3D11DeviceContext* deviceContext)
 {
-	ZEPHYR_ASSERT(mpInputLayout != nullptr, "The input layout has not been initialized");
-	return mpInputLayout;
+	deviceContext->VSSetShader(mpVertexShader, NULL, 0);
+	deviceContext->PSSetShader(mpPixelShader, NULL, 0);
 }
 
-Material::ShaderBlob::ShaderBlob() : shaderData(nullptr), fileSize(0)
+void Material::SetShaderBuffers(ID3D11DeviceContext* deviceContext, Camera* camera)
 {
 
-}
-
-Material::ShaderBlob::~ShaderBlob()
-{
-	DeleteObjects(shaderData);
 }

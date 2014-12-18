@@ -13,6 +13,7 @@
 #include <d3d11_1.h>
 #include <string>
 #include "DirectXRenderer.h"
+#include "Camera.h"
 
 namespace RenderCore
 {
@@ -24,23 +25,17 @@ namespace RenderCore
 		virtual ~Material();
 
 		virtual void Initialize(const std::string& vsFileName, const std::string& psFileName, DirectXRenderer* renderer) = 0;
-		ID3D11InputLayout* GetInputLayout() const;
+		virtual void SetActiveShader(ID3D11DeviceContext* deviceContext) = 0;
+		virtual void SetShaderBuffers(ID3D11DeviceContext* deviceContext, Camera* camera);
 
 	protected:
-
-		struct ShaderBlob
-		{
-			char* shaderData;
-			unsigned int fileSize;
-			ShaderBlob();
-			~ShaderBlob();
-		};
-
 		ID3D11VertexShader* mpVertexShader;
 		ID3D11PixelShader* mpPixelShader;
-		ShaderBlob* mpVertexShaderBlob;
-		ShaderBlob* mpPixelShaderBlob;
 		ID3D11InputLayout* mpInputLayout;
+		char* mpVertexShaderByteCode;
+		char* mpPixelShaderByteCode;
+		unsigned int mVertexShaderFileSize;
+		unsigned int mPixelShaderFileSize;
 		std::string mName;
 	};
 }

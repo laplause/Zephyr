@@ -17,7 +17,8 @@ mMultiSamplingQualityLevels(0),
 mMultiSamplingCount(4),
 mDepthStencilBufferEnabled(true),
 mMultiSamplingEnabled(true),
-mBackGroundColor(0.392f, 0.584f, 0.929f, 1.0f)
+mBackGroundColor(0.392f, 0.584f, 0.929f, 1.0f),
+camera(Camera::DefaultFieldOfView, 0, Camera::DefaultNearPlaneDistance, Camera::DefaultFarPlaneDistance)
 {
 	mWindow = new SystemWindow(instance, windowClass, windowTitle, showCommand);
 	mScreenWidth = mWindow->ScreenWidth();
@@ -34,6 +35,10 @@ void DirectXRenderer::Initialize()
 {
 	mWindow->Initialize();
 	InitializeDirectX();
+	camera.Reset();
+	camera.SetAspectRatio((float)mScreenWidth/(float)mScreeHeight);
+	camera.Initialize();
+	camera.SetPosition(0, 0, -10.0f);
 }
 
 void DirectXRenderer::Shutdown()
@@ -210,6 +215,8 @@ void DirectXRenderer::InitializeDirectX()
 
 void DirectXRenderer::Update()
 {
+	camera.Update();
+
 	for (unsigned int i = 0; i < mRenderList.size(); i++)
 	{
 		if (mRenderList[i].IsAssigned())
@@ -225,8 +232,20 @@ void DirectXRenderer::Draw()
 	for (unsigned int i = 0; i < mRenderList.size(); i++)
 	{
 		if (mRenderList[i].IsAssigned())
-			mRenderList[i].Draw(mDirect3DDeviceContext);
+		{
+			mRenderList[i].Draw(mDirect3DDeviceContext, &camera);
+		}
 	}
 
 	mSwapChain->Present(0, 0);
+}
+
+ID3D11Device* DirectXRenderer::Direct3DDevice() const
+{
+	return mDirect3DDevice;
+}
+
+ID3D11DeviceContext* DirectXRenderer::Direct3DDeviceContext() const
+{
+	return mDirect3DDeviceContext;
 }

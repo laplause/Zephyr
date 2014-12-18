@@ -33,6 +33,7 @@ namespace RenderCore
 		virtual void Draw() = 0;
 
 		void CreateRenderable(const std::string& meshName, const std::string& materialName);
+		void AddRenderable(Renderable& renderable);
 
 	protected:
 		const unsigned int GetNextUnusedRenderable();

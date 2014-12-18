@@ -33,7 +33,8 @@ ModelManager* ModelManager::GetModelManager()
 
 void ModelManager::AddModel(const std::string& modelName, Mesh* mesh)
 {
-	meshTable[modelName] = mesh;
+	if (mesh != nullptr)
+		meshTable[modelName] = mesh;
 }
 
 Mesh* ModelManager::GetModel(const std::string& modelName)

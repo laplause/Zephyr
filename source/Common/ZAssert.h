@@ -46,7 +46,7 @@ namespace ZAssert
 		strcat_s(errorMessage, sizeof(errorMessage), lineNumber);
 		strcat_s(errorMessage, sizeof(errorMessage), "\n");
 		strcat_s(errorMessage, sizeof(errorMessage), msg);
-		MessageBox(NULL, msg, condition, MB_OK);
+		MessageBox(NULL, errorMessage, condition, MB_OK);
 	}
 }
 

@@ -24,10 +24,14 @@ namespace RenderCore
 		virtual void Update();
 		virtual void Draw(ID3D11DeviceContext* deviceContext);
 		const ID3D11Buffer* GetVertexBuffer() const;
+		const ID3D11Buffer* GetIndexBuffer() const;
+		const unsigned int GetIndexCount() const;
 
 	protected:
 		std::string mName;
 		ID3D11Buffer* mpVertexBuffer;
+		ID3D11Buffer* mpIndexBuffer;
+		unsigned int mIndexCount;
 
 		void CreateVertexBuffers();
 	};

@@ -15,6 +15,7 @@
 #include <d3d11_1.h>
 #include "Renderer.h"
 #include "ZMath.h"
+#include "Camera.h"
 
 using namespace ZMath;
 
@@ -32,12 +33,13 @@ namespace RenderCore
 		virtual void Update();
 		virtual void Draw();
 
-		ID3D11Device1* Direct3DDevice() const;
-		ID3D11DeviceContext1* Direct3DDeviceContext() const;
+		ID3D11Device* Direct3DDevice() const;
+		ID3D11DeviceContext* Direct3DDeviceContext() const;
 		bool DepthBufferEnabled() const;
 		bool IsFullScreen() const;
 		const D3D11_TEXTURE2D_DESC& BackBufferDesc() const;
 		const D3D11_VIEWPORT& Viewport() const;
+		const Camera& GetCamera() const;
 
 	protected:
 		virtual void InitializeDirectX();
@@ -59,6 +61,8 @@ namespace RenderCore
 		bool mDepthStencilBufferEnabled;
 		bool mMultiSamplingEnabled;
 		ZMath::Vec4 mBackGroundColor;
+
+		Camera camera;
 
 	private:
 		DirectXRenderer(const DirectXRenderer& rhs);
