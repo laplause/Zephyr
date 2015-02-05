@@ -743,27 +743,25 @@ namespace ZMath
 			          0,       0,       0,       1);
 	}
 
-	// This is a left handed orthographic projection column matrix which uses a view volume depth of 0 to 1
-	// TODO: Transpose this matrix
+	// This is a left handed orthographic projection row matrix which uses a view volume depth of 0 to 1
 	inline Mat4x4 DirectXOrthoMatrix(float l, float r, float t, float b, float n, float f)
 	{
-		return Mat4x4(2 / r - l, 0, 0, 0,
-			0, 2 / t - b, 0, 0,
-			0, 0, 1 / f - n, 0,
-			l + r / l - r, t + b / b - t, n / n - f, 1);
+		return Mat4x4(2 / r - l, 0,         0,         l + r / l - r,
+			          0,         2 / t - b, 0,         t + b / b - t,
+			          0,         0,         1 / f - n, n / n - f,
+			          0,         0,         0,         1);
 	}
 
-	// This is a left handed orthographic proejction column matrix which uses a view volume depth of 0 to 1
-	//TODO: Transpose this matrix
+	// This is a left handed orthographic proejction row matrix which uses a view volume depth of 0 to 1
 	inline Mat4x4 DirectXOrthoMatrix(float width, float height, float n, float f)
 	{
-		return Mat4x4(2 / width, 0, 0, 0,
-			0, 2 / height, 0, 0,
-			0, 0, 1 / f - n, 0,
-			0, 0, n / n - f, 1);
+		return Mat4x4(2 / width, 0,          0,         0,
+			          0,         2 / height, 0,         0,
+			          0,         0,          1 / f - n, n / n - f,
+			          0,         0,          0,         1);
 	}
 
-	// This is a left handed perspective projection column matrix which uses a frustrum depth of 0 to 1
+	// This is a left handed perspective projection row matrix which uses a frustrum depth of 0 to 1
 	inline Mat4x4 DirectXPerspectiveMatrix(float fovY, float aspectRatio, float n, float f)
 	{
 		float zoomY = 1 / tan(fovY / 2);
