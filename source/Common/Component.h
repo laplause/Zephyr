@@ -22,6 +22,12 @@ namespace Core
 		const unsigned int GetId() const;
 		void SetId(const unsigned int newId);
 
+		enum ComponentType
+		{
+			RENDERABLE = 0,
+			COMPONENT_TYPE_MAX
+		};
+
 	protected:
 		unsigned int mId;
 		bool mAssigned;
