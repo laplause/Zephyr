@@ -15,7 +15,7 @@
 #include <d3d11_1.h>
 #include "Renderer.h"
 #include "ZMath.h"
-#include "Camera.h"
+#include "PerspectiveCamera.h"
 
 using namespace ZMath;
 
@@ -39,7 +39,7 @@ namespace RenderCore
 		bool IsFullScreen() const;
 		const D3D11_TEXTURE2D_DESC& BackBufferDesc() const;
 		const D3D11_VIEWPORT& Viewport() const;
-		const Camera& GetCamera() const;
+		const PerspectiveCamera& GetCamera() const;
 
 	protected:
 		virtual void InitializeDirectX();
@@ -62,7 +62,7 @@ namespace RenderCore
 		bool mMultiSamplingEnabled;
 		ZMath::Vec4 mBackGroundColor;
 
-		Camera camera;
+		PerspectiveCamera camera;
 
 	private:
 		DirectXRenderer(const DirectXRenderer& rhs);

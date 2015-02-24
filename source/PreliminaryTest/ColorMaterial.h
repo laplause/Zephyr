@@ -30,7 +30,7 @@ public:
 
 	virtual void Initialize(const std::string& vsFileName, const std::string& psFileName, RenderCore::DirectXRenderer* renderer);
 	virtual void SetActiveShader(ID3D11DeviceContext* deviceContext);
-	virtual void SetShaderBuffers(ID3D11DeviceContext* deviceContext, RenderCore::Camera* camera);
+	virtual void SetShaderBuffers(ID3D11DeviceContext* deviceContext, RenderCore::PerspectiveCamera* camera);
 
 private:
 	ID3D11Buffer* mpMatrixBuffer;

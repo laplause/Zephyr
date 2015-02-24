@@ -45,7 +45,7 @@ void ColorMaterial::SetActiveShader(ID3D11DeviceContext* deviceContext)
 	deviceContext->IASetInputLayout(mpInputLayout);
 }
 
-void ColorMaterial::SetShaderBuffers(ID3D11DeviceContext* deviceContext, RenderCore::Camera* camera)
+void ColorMaterial::SetShaderBuffers(ID3D11DeviceContext* deviceContext, RenderCore::PerspectiveCamera* camera)
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
 	MatrixBuffer* matrixData;

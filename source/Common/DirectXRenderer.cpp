@@ -18,7 +18,7 @@ mMultiSamplingCount(4),
 mDepthStencilBufferEnabled(true),
 mMultiSamplingEnabled(true),
 mBackGroundColor(0.392f, 0.584f, 0.929f, 1.0f),
-camera(Camera::DefaultFieldOfView, 0, Camera::DefaultNearPlaneDistance, Camera::DefaultFarPlaneDistance)
+camera(PerspectiveCamera::DefaultFieldOfView, 0, PerspectiveCamera::DefaultNearPlaneDistance, PerspectiveCamera::DefaultFarPlaneDistance)
 {
 	mWindow = new SystemWindow(instance, windowClass, windowTitle, showCommand);
 	mScreenWidth = mWindow->ScreenWidth();

@@ -17,43 +17,20 @@ namespace RenderCore
 	{
 	public:
 		Camera();
-		Camera(float fieldOfView, float aspectRatio, float nearPlaneDistance, float FarPlaneDistance);
-		~Camera();
+		virtual ~Camera();
 
-		virtual void Initialize();
-		virtual void Update();
+		virtual void Initialize() = 0;
+		virtual void Update() = 0;
 
-		virtual void Reset();
-		virtual void UpdateViewMatrix();
-		virtual void UpdateProjectionMatrix();
+		virtual void Reset() = 0;
 
 		virtual void SetPosition(float x, float y, float z);
 		virtual void SetPosition(ZMath::Vec3& position);
-
-		void SetAspectRatio(float aspectRatio);
-
-		const ZMath::Mat4x4& ViewMatrix() const;
-		const ZMath::Mat4x4& ProjectionMatrix() const;
-		const ZMath::Mat4x4& ViewProjectionMatrix() const;
 
 		const ZMath::Vec4& GetPosition() const;
 		const ZMath::Vec4& GetForward() const;
 		const ZMath::Vec4& GetUp() const;
 		const ZMath::Vec4& GetRight() const;
-
-		static const float DefaultFieldOfView;
-		static const float DefaultAspectRatio;
-		static const float DefaultNearPlaneDistance;
-		static const float DefaultFarPlaneDistance;
-
-	protected:
-		float mFieldOfView;
-		float mAspectRatio;
-		float mNearPlaneDistance;
-		float mFarPlaneDistance;
-
-		ZMath::Mat4x4 mViewMatrix;
-		ZMath::Mat4x4 mProjectionMatrix;
 
 	private:
 		Camera(const Camera& rhs);
