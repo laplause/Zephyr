@@ -9,8 +9,8 @@ Mesh::Mesh(const std::string& meshName) : mName(meshName), mpVertexBuffer(nullpt
 
 Mesh::~Mesh()
 {
-	ReleaseObject(mpVertexBuffer);
-	ReleaseObject(mpIndexBuffer);
+	ZEPHYR_RELEASEOBJECT(mpVertexBuffer);
+	ZEPHYR_RELEASEOBJECT(mpIndexBuffer);
 }
 
 void Mesh::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext)

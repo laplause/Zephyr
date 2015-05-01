@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{ad06626e-c220-4b78-923a-510a28b6ff85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML\Header Files">
+      <UniqueIdentifier>{c194a47a-7060-4f42-a90b-90e92fd5455d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML\Source Files">
+      <UniqueIdentifier>{e8b327f2-6b84-4333-ab79-b3fb29e44e6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ZMath.h">
@@ -75,6 +84,15 @@
     <ClInclude Include="OrthographicCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IXmlParseHelper.h">
+      <Filter>XML\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlParseMaster.h">
+      <Filter>XML\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SystemWindow.cpp">
@@ -127,6 +145,15 @@
     </ClCompile>
     <ClCompile Include="OrthographicCamera.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IXmlParseHelper.cpp">
+      <Filter>XML\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlParseMaster.cpp">
+      <Filter>XML\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

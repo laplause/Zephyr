@@ -11,9 +11,9 @@ mpVertexShaderByteCode(nullptr), mpPixelShaderByteCode(nullptr), mVertexShaderFi
 
 Material::~Material()
 {
-	ReleaseObject(mpVertexShader);
-	ReleaseObject(mpPixelShader);
-	ReleaseObject(mpInputLayout);
+	ZEPHYR_RELEASEOBJECT(mpVertexShader);
+	ZEPHYR_RELEASEOBJECT(mpPixelShader);
+	ZEPHYR_RELEASEOBJECT(mpInputLayout);
 }
 
 void Material::Initialize(const std::string& vsFileName, const std::string& psFileName, DirectXRenderer* renderer)

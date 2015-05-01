@@ -43,18 +43,18 @@ void DirectXRenderer::Initialize()
 
 void DirectXRenderer::Shutdown()
 {
-	ReleaseObject(mRenderTargertView);
-	ReleaseObject(mDepthStencilView);
-	ReleaseObject(mSwapChain);
-	ReleaseObject(mDepthStencilBuffer);
+	ZEPHYR_RELEASEOBJECT(mRenderTargertView);
+	ZEPHYR_RELEASEOBJECT(mDepthStencilView);
+	ZEPHYR_RELEASEOBJECT(mSwapChain);
+	ZEPHYR_RELEASEOBJECT(mDepthStencilBuffer);
 
 	if (mDirect3DDeviceContext != nullptr)
 	{
 		mDirect3DDeviceContext->ClearState();
 	}
 
-	ReleaseObject(mDirect3DDeviceContext);
-	ReleaseObject(mDirect3DDevice);
+	ZEPHYR_RELEASEOBJECT(mDirect3DDeviceContext);
+	ZEPHYR_RELEASEOBJECT(mDirect3DDevice);
 
 	mWindow->Shutdown();
 }
@@ -117,15 +117,15 @@ void DirectXRenderer::InitializeDirectX()
 	if (FAILED(hr = dxgiDevice->GetParent(__uuidof(IDXGIAdapter), reinterpret_cast<void**>(&dxgiAdapter))))
 	{
 		//TODO: some kind of error checking htat queryinterface failed
-		ReleaseObject(dxgiDevice);
+		ZEPHYR_RELEASEOBJECT(dxgiDevice);
 	}
 
 	IDXGIFactory2* dxgiFactory = nullptr;
 	if (FAILED(hr = dxgiAdapter->GetParent(__uuidof(IDXGIFactory2), reinterpret_cast<void**>(&dxgiFactory))))
 	{
 		//TODO: some kind of error checking that queryinteface failed.
-		ReleaseObject(dxgiDevice);
-		ReleaseObject(dxgiAdapter);
+		ZEPHYR_RELEASEOBJECT(dxgiDevice);
+		ZEPHYR_RELEASEOBJECT(dxgiAdapter);
 	}
 
 	DXGI_SWAP_CHAIN_FULLSCREEN_DESC fullScreenDesc;
@@ -137,14 +137,14 @@ void DirectXRenderer::InitializeDirectX()
 	if (FAILED(hr = dxgiFactory->CreateSwapChainForHwnd(dxgiDevice, mWindow->GetWindowHandle(), &swapCahinDesc, &fullScreenDesc, nullptr, &mSwapChain)))
 	{
 		//TODO: somne sort of error code signifying that CreateSwapCahinForHwnd failed
-		ReleaseObject(dxgiDevice);
-		ReleaseObject(dxgiAdapter);
-		ReleaseObject(dxgiFactory);
+		ZEPHYR_RELEASEOBJECT(dxgiDevice);
+		ZEPHYR_RELEASEOBJECT(dxgiAdapter);
+		ZEPHYR_RELEASEOBJECT(dxgiFactory);
 	}
 
-	ReleaseObject(dxgiDevice);
-	ReleaseObject(dxgiAdapter);
-	ReleaseObject(dxgiFactory);
+	ZEPHYR_RELEASEOBJECT(dxgiDevice);
+	ZEPHYR_RELEASEOBJECT(dxgiAdapter);
+	ZEPHYR_RELEASEOBJECT(dxgiFactory);
 
 	// Create the render target view
 	ID3D11Texture2D* backBuffer;
@@ -159,10 +159,10 @@ void DirectXRenderer::InitializeDirectX()
 	if (FAILED(hr = mDirect3DDevice->CreateRenderTargetView(backBuffer, nullptr, &mRenderTargertView)))
 	{
 		//TODO: Some error code for CreateRenderTargetView
-		ReleaseObject(backBuffer);
+		ZEPHYR_RELEASEOBJECT(backBuffer);
 	}
 
-	ReleaseObject(backBuffer);
+	ZEPHYR_RELEASEOBJECT(backBuffer);
 
 	// Create the depth stencil view
 	if (mDepthStencilBufferEnabled)

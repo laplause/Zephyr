@@ -25,8 +25,8 @@ void ColorMaterial::Initialize(const std::string& vsFileName, const std::string&
 
 	numElements = sizeof(ied) / sizeof(ied[0]);
 	renderer->Direct3DDevice()->CreateInputLayout(ied, numElements, mpVertexShaderByteCode, mVertexShaderFileSize, &mpInputLayout);
-	DeleteObjects(mpVertexShaderByteCode);
-	DeleteObjects(mpPixelShaderByteCode);
+	ZEPHYR_DELETEOBJECTS(mpVertexShaderByteCode);
+	ZEPHYR_DELETEOBJECTS(mpPixelShaderByteCode);
 
 	D3D11_BUFFER_DESC matrixBufferDesc;
 	matrixBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
