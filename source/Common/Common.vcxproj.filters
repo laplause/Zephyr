@@ -22,6 +22,9 @@
     <Filter Include="XML\Source Files">
       <UniqueIdentifier>{e8b327f2-6b84-4333-ab79-b3fb29e44e6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="XML\SharedData">
+      <UniqueIdentifier>{b684f6c7-de65-44eb-aa14-dc62c68a13eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ZMath.h">
@@ -93,6 +96,9 @@
     <ClInclude Include="XmlParseMaster.h">
       <Filter>XML\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextureData.h">
+      <Filter>XML\SharedData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SystemWindow.cpp">
@@ -154,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="XmlParseMaster.cpp">
       <Filter>XML\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureData.cpp">
+      <Filter>XML\SharedData</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

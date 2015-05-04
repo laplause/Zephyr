@@ -23,7 +23,6 @@ namespace Core
 		public:
 			SharedData();
 			virtual ~SharedData();
-			virtual SharedData* Clone();
 			
 			void SetXmlParseMaster(XmlParseMaster* parentParser);
 			XmlParseMaster* GetXmlParseMaster() const;
@@ -39,7 +38,6 @@ namespace Core
 
 		XmlParseMaster(SharedData* sharedData);
 		~XmlParseMaster();
-		XmlParseMaster* Clone();
 		
 		void AddHelper(IXmlParseHelper* helper);
 		void RemoveHelper(IXmlParseHelper* helper);

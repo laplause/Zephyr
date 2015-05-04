@@ -34,21 +34,6 @@ XmlParseMaster::~XmlParseMaster()
 	XML_ParserFree(mParser);
 }
 
-XmlParseMaster* XmlParseMaster::Clone()
-{
-	SharedData *output = mOutput->Clone();
-	XmlParseMaster *clone = new XmlParseMaster(output);
-	clone->SetIsAClone();
-
-	for(std::list<IXmlParseHelper*>::iterator it = mHelpers.begin(); it != mHelpers.end(); it++)
-	{
-		IXmlParseHelper *helper = (*it)->Clone();
-		helper->SetXmlParseMaster(clone);
-	}
-
-	return &(*clone);
-}
-
 void XmlParseMaster::AddHelper(IXmlParseHelper* helper)
 {
 	ZEPHYR_ASSERT(helper != nullptr, "Trying to add a null pointer to helper list.");
@@ -181,13 +166,6 @@ XmlParseMaster::SharedData::SharedData() : mParentParser(NULL), mNestingDepth(0)
 XmlParseMaster::SharedData::~SharedData()
 {
 
-}
-
-XmlParseMaster::SharedData* XmlParseMaster::SharedData::Clone()
-{
-	SharedData *clone = new SharedData();
-
-	return &(*clone);
 }
 
 void XmlParseMaster::SharedData::SetXmlParseMaster(XmlParseMaster* parentParser)

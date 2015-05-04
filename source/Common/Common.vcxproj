@@ -126,6 +126,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SystemWindow.h" />
+    <ClInclude Include="TextureData.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="XmlParseMaster.h" />
     <ClInclude Include="ZAssert.h" />
@@ -149,6 +150,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(
     <ClCompile Include="DirectXRenderer.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SystemWindow.cpp" />
+    <ClCompile Include="TextureData.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="XmlParseMaster.cpp" />
     <ClCompile Include="ZMath.cpp" />
