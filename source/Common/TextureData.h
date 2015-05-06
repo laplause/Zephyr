@@ -21,6 +21,7 @@ namespace Core
 		virtual ~TextureData();
 
 		std::string mTextureFileName;
+		std::string mTextureName;
 		std::stack<std::string> mTags;
 	};
 }

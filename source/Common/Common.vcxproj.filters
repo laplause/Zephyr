@@ -99,6 +99,9 @@
     <ClInclude Include="TextureData.h">
       <Filter>XML\SharedData</Filter>
     </ClInclude>
+    <ClInclude Include="XmlParseHelperTexture.h">
+      <Filter>XML\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SystemWindow.cpp">
@@ -163,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="TextureData.cpp">
       <Filter>XML\SharedData</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlParseHelperTexture.cpp">
+      <Filter>XML\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

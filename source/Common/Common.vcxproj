@@ -52,7 +52,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\External\Expat\headers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\External\Expat\headers;$(SolutionDir)..\External\DirectXTK\Inc</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4481;4201</DisableSpecificWarnings>
     </ClCompile>
@@ -69,10 +69,10 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName)D.lib" "$(SolutionDir)..\lib\$
 </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;ExpatD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;ExpatD.lib;DirectXTKD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(WindowsSDK_LibraryPath_x86)\;$(SolutionDir)..\External\Expat\library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(WindowsSDK_LibraryPath_x86)\;$(SolutionDir)..\External\Expat\library\;$(SolutionDir)..\External\DirectXTK\library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,7 +82,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName)D.lib" "$(SolutionDir)..\lib\$
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\External\Expat\headers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\External\Expat\headers\;$(SolutionDir)..\External\DirectXTK\Inc</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4481;4201</DisableSpecificWarnings>
     </ClCompile>
@@ -100,10 +100,10 @@ copy "$(ProjectDir)*.h" "$(SolutionDir)..\include"</Command>
 copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(ProjectName).lib"</Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;Expat.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;Expat.lib;DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(WindowsSDK_LibraryPath_x86)\;$(SolutionDir)..\External\Expat\library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(WindowsSDK_LibraryPath_x86)\;$(SolutionDir)..\External\Expat\library\;$(SolutionDir)..\External\DirectXTK\library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -128,6 +128,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(
     <ClInclude Include="SystemWindow.h" />
     <ClInclude Include="TextureData.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="XmlParseHelperTexture.h" />
     <ClInclude Include="XmlParseMaster.h" />
     <ClInclude Include="ZAssert.h" />
     <ClInclude Include="ZMath.h" />
@@ -152,6 +153,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(
     <ClCompile Include="SystemWindow.cpp" />
     <ClCompile Include="TextureData.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="XmlParseHelperTexture.cpp" />
     <ClCompile Include="XmlParseMaster.cpp" />
     <ClCompile Include="ZMath.cpp" />
   </ItemGroup>

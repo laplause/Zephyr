@@ -3,7 +3,7 @@ using namespace RenderCore;
 
 TextureManager* TextureManager::m_sInstance = nullptr;
 
-TextureManager::TextureManager()
+TextureManager::TextureManager() : mTextureTable(), mTextureLoadInfoList()
 {
 
 }
@@ -43,15 +43,35 @@ void TextureManager::AddTexture(const std::string& textureName, Texture* texture
 {
 	if (texture != nullptr)
 	{
-		textureTable[textureName] = texture;
+		mTextureTable[textureName] = texture;
+	}
+}
+
+void TextureManager::AddTextureData(const std::string& textureName, const std::string& texturePath)
+{
+	mTextureLoadInfoList.push_back(TextureLoadInfo(textureName, texturePath));
+}
+
+void TextureManager::LoadTexturesFromData(ID3D11Device* device)
+{
+	if (mTextureLoadInfoList.empty())
+		return;
+
+	for (std::vector<TextureLoadInfo>::iterator it = mTextureLoadInfoList.begin(); it != mTextureLoadInfoList.end(); it++)
+	{
+		Texture* tex = new Texture();
+		TextureLoadInfo tli = *it;
+
+		tex->LoadTexture(std::wstring(tli.second.begin(), tli.second.end()), device);
+		AddTexture(tli.first, tex);
 	}
 }
 
 Texture* TextureManager::GetTexture(const std::string& textureName)
 {
-	if (textureTable.find(textureName) != textureTable.end() && textureTable.find(textureName)->second != nullptr)
+	if (mTextureTable.find(textureName) != mTextureTable.end() && mTextureTable.find(textureName)->second != nullptr)
 	{
-		return textureTable[textureName];
+		return mTextureTable[textureName];
 	}
 	else
 	{

@@ -51,7 +51,7 @@ void XmlParseMaster::Parse(const char* buffer, unsigned int bufferSize, bool atE
 	ResetParser();
 }
 
-void XmlParseMaster::ParseFromFile(std::string& fileName)
+void XmlParseMaster::ParseFromFile(const std::string& fileName)
 {
 	unsigned int fileSize = 0;
 	std::ifstream input(fileName, std::ios::binary);
@@ -81,7 +81,7 @@ std::string XmlParseMaster::GetFileName()
 XmlParseMaster::SharedData* XmlParseMaster::GetSharedData()
 {
 	ZEPHYR_ASSERT(mOutput != nullptr, "Trying to access null shared data.");
-	return &(*mOutput);
+	return mOutput;
 }
 
 void XmlParseMaster::StartElementHandler(void* userData, const XML_Char *name, const XML_Char **atts)

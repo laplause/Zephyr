@@ -8,6 +8,9 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#include <d3d11.h>
+#include <string>
+
 namespace RenderCore
 {
 	//Class that defines a Texture being used by the engine
@@ -16,6 +19,12 @@ namespace RenderCore
 	public:
 		Texture();
 		~Texture();
+
+		bool LoadTexture(const std::wstring& fileName, ID3D11Device* device);
+		ID3D11ShaderResourceView* GetTextureResource() const;
+
+	private:
+		ID3D11ShaderResourceView* mTexture;
 	};
 }
 #endif

@@ -27,6 +27,9 @@
     <ClCompile Include="ColorMaterial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TextureMaterial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Triangle.h">
@@ -35,12 +38,21 @@
     <ClInclude Include="ColorMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextureMaterial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Color.hlsl">
       <Filter>TestShaders</Filter>
     </FxCompile>
     <FxCompile Include="ColorPS.hlsl">
+      <Filter>TestShaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Texture.hlsl">
+      <Filter>TestShaders</Filter>
+    </FxCompile>
+    <FxCompile Include="TexturePS.hlsl">
       <Filter>TestShaders</Filter>
     </FxCompile>
   </ItemGroup>

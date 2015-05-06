@@ -2,8 +2,14 @@
 #include "Mesh.h"
 #include "Triangle.h"
 #include "ColorMaterial.h"
+#include "TextureMaterial.h"
 #include "ModelManager.h"
 #include "MaterialManager.h"
+#include "Texture.h"
+#include "XmlParseMaster.h"
+#include "XmlParseHelperTexture.h"
+#include "TextureData.h"
+#include "TextureManager.h"
 using namespace RenderCore;
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandLine, int showCommand)
@@ -11,16 +17,26 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandL
 	RenderCore::DirectXRenderer dx(instance, L"RenderWindow", L"blah", showCommand);
 	dx.Initialize();
 
+	TextureData data;
+	XmlParseMaster parser(&data);
+	XmlParseHelperTexture textureHelper(&parser);
+
+	parser.ParseFromFile("..\\..\\Resources\\TexturesToLoad.xml");
+	TextureManager::GetTextureManager()->LoadTexturesFromData(dx.Direct3DDevice());
+
 	Triangle *t = new Triangle("triangle");
-	ColorMaterial *c = new ColorMaterial("color");
+	TextureMaterial *tm = new TextureMaterial("texturing");
+	//ColorMaterial *c = new ColorMaterial("color");
 
 	t->Initialize(dx.Direct3DDevice(), dx.Direct3DDeviceContext());
-	c->Initialize("C:\\Chris Shit\\Programming Projects\\c++ Projects\\zephyr\\bin\\Color.cso", "C:\\Chris Shit\\Programming Projects\\c++ Projects\\zephyr\\bin\\ColorPS.cso", &dx);
+	tm->Initialize("..\\..\\bin\\Texture.cso", "..\\..\\bin\\TexturePS.cso", &dx);
+	//c->Initialize("..\\..\\bin\\Color.cso", "..\\..\\bin\\ColorPS.cso", &dx);
 
-	MaterialManager::GetMaterialManager()->AddMaterial("color", c);
+	//MaterialManager::GetMaterialManager()->AddMaterial("color", c);
+	MaterialManager::GetMaterialManager()->AddMaterial("texturing", tm);
 	ModelManager::GetModelManager()->AddModel("triangle", t);
 
-	dx.CreateRenderable("triangle", "color");
+	dx.CreateRenderable("triangle", "texturing");
 
 	MSG message;
 	ZeroMemory(&message, sizeof(message));

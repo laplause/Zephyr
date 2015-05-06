@@ -28,7 +28,7 @@ private:
 	struct Vertex
 	{
 		Vec3 position;
-		Vec4 color;
+		Vec2 textureCoordinates;
 	};
 };
 #endif

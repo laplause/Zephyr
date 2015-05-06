@@ -8,7 +8,7 @@ ColorMaterial::ColorMaterial(const std::string& materialName) : Material(materia
 
 ColorMaterial::~ColorMaterial()
 {
-
+	ZEPHYR_RELEASEOBJECT(mpMatrixBuffer);
 }
 
 void ColorMaterial::Initialize(const std::string& vsFileName, const std::string& psFileName, RenderCore::DirectXRenderer* renderer)

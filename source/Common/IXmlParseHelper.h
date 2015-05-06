@@ -19,7 +19,6 @@ namespace Core
 	public:
 		IXmlParseHelper(XmlParseMaster *master);
 		virtual ~IXmlParseHelper();
-		virtual IXmlParseHelper* Clone() = 0;
 
 		virtual void Initialize() = 0;
 		virtual bool StartElementHandler(const std::string& elementName, const std::map<std::string, std::string>& attributes) const = 0;

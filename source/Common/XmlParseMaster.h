@@ -10,7 +10,7 @@
 
 #include "ZAssert.h"
 #include "IXmlParseHelper.h"
-#include "expat.h"
+#include <expat.h>
 #include <list>
 
 namespace Core
@@ -43,7 +43,7 @@ namespace Core
 		void RemoveHelper(IXmlParseHelper* helper);
 		
 		void Parse(const char* buffer, unsigned int bufferSize, bool atEnd);
-		void ParseFromFile(std::string& fileName);
+		void ParseFromFile(const std::string& fileName);
 		
 		std::string GetFileName();
 		SharedData* GetSharedData();

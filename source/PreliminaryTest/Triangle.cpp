@@ -20,13 +20,13 @@ void Triangle::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceConte
 	indices = new unsigned long[mIndexCount];
 
 	vertices[0].position = ZMath::Vec3(-1.0f, -1.0f, 0);
-	vertices[0].color = ZMath::Vec4(1.0f, 0, 0, 1.0f);
+	vertices[0].textureCoordinates = ZMath::Vec2(0.0f, 1.0f);
 
 	vertices[1].position = ZMath::Vec3(0, 1.0f, 0);
-	vertices[1].color = ZMath::Vec4(0, 1.0f, 0, 1.0f);
+	vertices[1].textureCoordinates = ZMath::Vec2(0.5f, 0);
 
 	vertices[2].position = ZMath::Vec3(1.0f, -1.0f, 0);
-	vertices[2].color = ZMath::Vec4(0, 0, 1.0f, 0);
+	vertices[2].textureCoordinates = ZMath::Vec2(1.0f, 1.0f);
 
 	indices[0] = 0;
 	indices[1] = 1;
