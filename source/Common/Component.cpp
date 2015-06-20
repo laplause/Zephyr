@@ -16,9 +16,10 @@ const bool Component::IsAssigned() const
 	return mAssigned;
 }
 
-void Component::Assign()
+void Component::Assign(const ComponentType componentType)
 {
 	mAssigned = true;
+	mType = componentType;
 }
 
 const unsigned int Component::GetId() const
@@ -29,4 +30,9 @@ const unsigned int Component::GetId() const
 void Component::SetId(const unsigned int newId)
 {
 	mId = newId;
+}
+
+const Component::ComponentType Component::GetType() const
+{
+	return mType;
 }

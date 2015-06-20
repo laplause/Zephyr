@@ -28,7 +28,7 @@ void Renderable::Update()
 	mMesh->Update();
 }
 
-void Renderable::Draw(ID3D11DeviceContext* deviceContext, PerspectiveCamera* camera)
+void Renderable::Draw(ID3D11DeviceContext* deviceContext, Camera* camera)
 {
 	ZEPHYR_ASSERT(mMesh != nullptr, "A renderable was initialized with a null mesh");
 	ZEPHYR_ASSERT(mMaterial != nullptr, "A renderable was initialized with a null material");

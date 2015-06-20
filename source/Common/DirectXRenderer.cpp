@@ -17,13 +17,14 @@ mMultiSamplingQualityLevels(0),
 mMultiSamplingCount(4),
 mDepthStencilBufferEnabled(true),
 mMultiSamplingEnabled(true),
-mBackGroundColor(0.392f, 0.584f, 0.929f, 1.0f),
-camera(PerspectiveCamera::DefaultFieldOfView, 0, PerspectiveCamera::DefaultNearPlaneDistance, PerspectiveCamera::DefaultFarPlaneDistance)
+mBackGroundColor(0.392f, 0.584f, 0.929f, 1.0f)
+//camera(PerspectiveCamera::DefaultFieldOfView, 0, PerspectiveCamera::DefaultNearPlaneDistance, PerspectiveCamera::DefaultFarPlaneDistance)
 {
 	mWindow = new SystemWindow(instance, windowClass, windowTitle, showCommand);
 	mScreenWidth = mWindow->ScreenWidth();
 	mScreeHeight = mWindow->ScreenHeight();
 	mIsFullScreen = mWindow->IsFullScreen();
+	camera = new OrthoGraphicCamera((float)mScreenWidth, (float)mScreeHeight);
 }
 
 DirectXRenderer::~DirectXRenderer()
@@ -35,10 +36,10 @@ void DirectXRenderer::Initialize()
 {
 	mWindow->Initialize();
 	InitializeDirectX();
-	camera.Reset();
-	camera.SetAspectRatio((float)mScreenWidth/(float)mScreeHeight);
-	camera.Initialize();
-	camera.SetPosition(0, 0, -10.0f);
+	camera->Reset();
+	//camera.SetAspectRatio((float)mScreenWidth/(float)mScreeHeight);
+	camera->Initialize();
+	camera->SetPosition(0, 0, -10.0f);
 }
 
 void DirectXRenderer::Shutdown()
@@ -215,7 +216,7 @@ void DirectXRenderer::InitializeDirectX()
 
 void DirectXRenderer::Update()
 {
-	camera.Update();
+	camera->Update();
 
 	for (unsigned int i = 0; i < mRenderList.size(); i++)
 	{
@@ -233,7 +234,7 @@ void DirectXRenderer::Draw()
 	{
 		if (mRenderList[i].IsAssigned())
 		{
-			mRenderList[i].Draw(mDirect3DDeviceContext, &camera);
+			mRenderList[i].Draw(mDirect3DDeviceContext, camera);
 		}
 	}
 

@@ -1,7 +1,7 @@
 #include "Camera.h"
 using namespace RenderCore;
 
-Camera::Camera() : GameObject()
+Camera::Camera() : GameObject(), mViewMatrix(), mProjectionMatrix()
 {
 
 }
@@ -36,4 +36,19 @@ void Camera::SetPosition(float x, float y, float z)
 void Camera::SetPosition(ZMath::Vec3& position)
 {
 	mTransform.row3 = ZMath::Vec4(position, 1.0f);
+}
+
+const ZMath::Mat4x4& Camera::ViewMatrix() const
+{
+	return mViewMatrix;
+}
+
+const ZMath::Mat4x4& Camera::ProjectionMatrix() const
+{
+	return mProjectionMatrix;
+}
+
+const ZMath::Mat4x4& Camera::ViewProjectionMatrix() const
+{
+	return mViewMatrix * mProjectionMatrix;
 }

@@ -66,7 +66,7 @@ void TextureMaterial::SetActiveShader(ID3D11DeviceContext* deviceContext)
 	deviceContext->IASetInputLayout(mpInputLayout);
 }
 
-void TextureMaterial::SetShaderBuffers(ID3D11DeviceContext* deviceContext, RenderCore::PerspectiveCamera* camera)
+void TextureMaterial::SetShaderBuffers(ID3D11DeviceContext* deviceContext, RenderCore::Camera* camera)
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
 	MatrixBuffer* matrixData;
@@ -76,7 +76,7 @@ void TextureMaterial::SetShaderBuffers(ID3D11DeviceContext* deviceContext, Rende
 	matrixData = (MatrixBuffer*)mappedResource.pData;
 
 	matrixData->world = ZMath::CreateIdentity4x4();
-	matrixData->view = camera->ViewMatrix();
+	matrixData->view =  camera->ViewMatrix();
 	matrixData->projection = camera->ProjectionMatrix();
 
 	deviceContext->Unmap(mpMatrixBuffer, 0);

@@ -32,6 +32,14 @@ namespace RenderCore
 		const ZMath::Vec4& GetUp() const;
 		const ZMath::Vec4& GetRight() const;
 
+		const ZMath::Mat4x4& ViewMatrix() const;
+		const ZMath::Mat4x4& ProjectionMatrix() const;
+		const ZMath::Mat4x4& ViewProjectionMatrix() const;
+
+	protected:
+		ZMath::Mat4x4 mViewMatrix;
+		ZMath::Mat4x4 mProjectionMatrix;
+
 	private:
 		Camera(const Camera& rhs);
 		Camera& operator=(const Camera& rhs);

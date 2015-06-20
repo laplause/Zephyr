@@ -757,8 +757,8 @@ namespace ZMath
 	{
 		return Mat4x4(2 / width, 0,          0,         0,
 			          0,         2 / height, 0,         0,
-			          0,         0,          1 / f - n, n / n - f,
-			          0,         0,          0,         1);
+					  0,         0,          1 / f - n, 0,
+					  0,         0,          -n / f - n, 1);
 	}
 
 	// This is a left handed perspective projection row matrix which uses a frustrum depth of 0 to 1

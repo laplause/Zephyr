@@ -16,6 +16,7 @@
 #include "Renderer.h"
 #include "ZMath.h"
 #include "PerspectiveCamera.h"
+#include "OrthographicCamera.h"
 
 using namespace ZMath;
 
@@ -62,7 +63,7 @@ namespace RenderCore
 		bool mMultiSamplingEnabled;
 		ZMath::Vec4 mBackGroundColor;
 
-		PerspectiveCamera camera;
+		OrthoGraphicCamera* camera;
 
 	private:
 		DirectXRenderer(const DirectXRenderer& rhs);

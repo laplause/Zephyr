@@ -30,10 +30,6 @@ namespace RenderCore
 		virtual void SetPosition(ZMath::Vec3& position);
 		void SetAspectRatio(float aspectRatio);
 
-		const ZMath::Mat4x4& ViewMatrix() const;
-		const ZMath::Mat4x4& ProjectionMatrix() const;
-		const ZMath::Mat4x4& ViewProjectionMatrix() const;
-
 		static const float DefaultFieldOfView;
 		static const float DefaultAspectRatio;
 		static const float DefaultNearPlaneDistance;
@@ -44,9 +40,6 @@ namespace RenderCore
 		float mAspectRatio;
 		float mNearPlaneDistance;
 		float mFarPlaneDistance;
-
-		ZMath::Mat4x4 mViewMatrix;
-		ZMath::Mat4x4 mProjectionMatrix;
 	};
 }
 #endif

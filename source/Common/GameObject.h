@@ -17,7 +17,7 @@ namespace Core
 	{
 	public:
 		GameObject();
-		GameObject(int id);
+		explicit GameObject(int id);
 		virtual ~GameObject();
 
 		bool isEnabled();
@@ -30,7 +30,7 @@ namespace Core
 		bool mEnabled;
 		bool mVisible;
 		int mHandle;
-		int mComponentHandles[Component::COMPONENT_TYPE_MAX];
+		unsigned int mComponentHandles[Component::COMPONENT_TYPE_MAX];
 		ZMath::Mat4x4 mTransform;
 	};
 }

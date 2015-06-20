@@ -5,15 +5,13 @@ const float OrthoGraphicCamera::DefaultNearPlaneDistance = 0;
 const float OrthoGraphicCamera::DefaultFarPlaneDistance = 1.0f;
 
 OrthoGraphicCamera::OrthoGraphicCamera(float screenWidth, float screenHeight)
-: Camera(), mWidth(screenWidth), mHeight(screenHeight), mNearPlaneDistance(DefaultNearPlaneDistance), mFarPlaneDistance(DefaultFarPlaneDistance),
-mViewMatrix(), mProjectionMatrix()
+: Camera(), mWidth(screenWidth), mHeight(screenHeight), mNearPlaneDistance(DefaultNearPlaneDistance), mFarPlaneDistance(DefaultFarPlaneDistance)
 {
 
 }
 
 OrthoGraphicCamera::OrthoGraphicCamera(float screenWidth, float screenHeight, float near, float far)
-: Camera(), mWidth(screenWidth), mHeight(screenHeight), mNearPlaneDistance(near), mFarPlaneDistance(far),
-mViewMatrix(), mProjectionMatrix()
+: Camera(), mWidth(screenWidth), mHeight(screenHeight), mNearPlaneDistance(near), mFarPlaneDistance(far)
 {
 
 }
@@ -61,19 +59,4 @@ void OrthoGraphicCamera::SetPosition(float x, float y, float z)
 void OrthoGraphicCamera::SetPosition(ZMath::Vec3& position)
 {
 	Camera::SetPosition(position);
-}
-
-const ZMath::Mat4x4& OrthoGraphicCamera::ViewMatrix() const
-{
-	return mViewMatrix;
-}
-
-const ZMath::Mat4x4& OrthoGraphicCamera::ProjectionMatrix() const
-{
-	return mProjectionMatrix;
-}
-
-const ZMath::Mat4x4& OrthoGraphicCamera::ViewProjectionMatrix() const
-{
-	return mViewMatrix * mProjectionMatrix;
 }

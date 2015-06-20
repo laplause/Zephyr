@@ -14,22 +14,26 @@ namespace Core
 	class Component
 	{
 	public:
-		Component();
-		virtual ~Component();
-
-		const bool IsAssigned() const;
-		void Assign();
-		const unsigned int GetId() const;
-		void SetId(const unsigned int newId);
-
-		enum ComponentType
+		static enum ComponentType
 		{
 			RENDERABLE = 0,
 			COMPONENT_TYPE_MAX
 		};
 
+		Component();
+		virtual ~Component();
+
+		const bool IsAssigned() const;
+		void Assign(const ComponentType componentType);
+
+		const unsigned int GetId() const;
+		void SetId(const unsigned int newId);
+
+		const ComponentType GetType() const;
+
 	protected:
 		unsigned int mId;
+		ComponentType mType;
 		bool mAssigned;
 	};
 }

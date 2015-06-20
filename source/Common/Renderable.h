@@ -20,7 +20,7 @@ namespace RenderCore
 {
 	class Material;
 	class Mesh;
-	class PerspectiveCamera;
+	class Camera;
 
 	class Renderable : public Core::Component
 	{
@@ -30,7 +30,7 @@ namespace RenderCore
 
 		virtual void Initialize(const std::string& meshName, const std::string& materialName);
 		virtual void Update();
-		virtual void Draw(ID3D11DeviceContext* deviceContext, PerspectiveCamera* camera);
+		virtual void Draw(ID3D11DeviceContext* deviceContext, Camera* camera);
 
 	protected:
 		Material* mMaterial;

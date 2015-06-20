@@ -53,7 +53,7 @@ void Material::SetActiveShader(ID3D11DeviceContext* deviceContext)
 	deviceContext->PSSetShader(mpPixelShader, NULL, 0);
 }
 
-void Material::SetShaderBuffers(ID3D11DeviceContext* deviceContext, PerspectiveCamera* camera)
+void Material::SetShaderBuffers(ID3D11DeviceContext* deviceContext, Camera* camera)
 {
 
 }

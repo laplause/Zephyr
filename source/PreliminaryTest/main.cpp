@@ -10,6 +10,7 @@
 #include "XmlParseHelperTexture.h"
 #include "TextureData.h"
 #include "TextureManager.h"
+#include "Sprite.h"
 using namespace RenderCore;
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandLine, int showCommand)
@@ -26,17 +27,20 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandL
 
 	Triangle *t = new Triangle("triangle");
 	TextureMaterial *tm = new TextureMaterial("texturing");
-	//ColorMaterial *c = new ColorMaterial("color");
+	ColorMaterial *c = new ColorMaterial("color");
 
 	t->Initialize(dx.Direct3DDevice(), dx.Direct3DDeviceContext());
 	tm->Initialize("..\\..\\bin\\Texture.cso", "..\\..\\bin\\TexturePS.cso", &dx);
-	//c->Initialize("..\\..\\bin\\Color.cso", "..\\..\\bin\\ColorPS.cso", &dx);
+	c->Initialize("..\\..\\bin\\Color.cso", "..\\..\\bin\\ColorPS.cso", &dx);
 
-	//MaterialManager::GetMaterialManager()->AddMaterial("color", c);
+	MaterialManager::GetMaterialManager()->AddMaterial("color", c);
 	MaterialManager::GetMaterialManager()->AddMaterial("texturing", tm);
 	ModelManager::GetModelManager()->AddModel("triangle", t);
 
-	dx.CreateRenderable("triangle", "texturing");
+	Sprite *s = new Sprite("quad");
+	s->Initialize(&dx, "texturing");
+
+	//dx.CreateRenderable("triangle", "texturing");
 
 	MSG message;
 	ZeroMemory(&message, sizeof(message));

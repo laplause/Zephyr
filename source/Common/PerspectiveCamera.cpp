@@ -6,15 +6,13 @@ const float PerspectiveCamera::DefaultNearPlaneDistance = 0.01f;
 const float PerspectiveCamera::DefaultFarPlaneDistance = 100.0f;
 
 PerspectiveCamera::PerspectiveCamera()
-: Camera(), mFieldOfView(DefaultFieldOfView), mNearPlaneDistance(DefaultNearPlaneDistance), mFarPlaneDistance(DefaultFarPlaneDistance),
-mViewMatrix(), mProjectionMatrix()
+: Camera(), mFieldOfView(DefaultFieldOfView), mNearPlaneDistance(DefaultNearPlaneDistance), mFarPlaneDistance(DefaultFarPlaneDistance)
 {
 
 }
 
 PerspectiveCamera::PerspectiveCamera(float fieldOfView, float aspectRatio, float nearPlaneDistance, float farPlaneDistance)
-: Camera(), mFieldOfView(fieldOfView), mAspectRatio(aspectRatio), mNearPlaneDistance(nearPlaneDistance), mFarPlaneDistance(farPlaneDistance),
-mViewMatrix(), mProjectionMatrix()
+: Camera(), mFieldOfView(fieldOfView), mAspectRatio(aspectRatio), mNearPlaneDistance(nearPlaneDistance), mFarPlaneDistance(farPlaneDistance)
 {
 
 }
@@ -58,21 +56,6 @@ void PerspectiveCamera::UpdateProjectionMatrix()
 void PerspectiveCamera::SetAspectRatio(float aspectRatio)
 {
 	mAspectRatio = aspectRatio;
-}
-
-const ZMath::Mat4x4& PerspectiveCamera::ViewMatrix() const
-{
-	return mViewMatrix;
-}
-
-const ZMath::Mat4x4& PerspectiveCamera::ProjectionMatrix() const
-{
-	return mProjectionMatrix;
-}
-
-const ZMath::Mat4x4& PerspectiveCamera::ViewProjectionMatrix() const
-{
-	return mViewMatrix * mProjectionMatrix;
 }
 
 void PerspectiveCamera::SetPosition(float x, float y, float z)
