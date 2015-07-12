@@ -10,6 +10,7 @@
 
 #include <d3d11.h>
 #include <string>
+#include "ZMath.h"
 
 namespace RenderCore
 {
@@ -22,9 +23,11 @@ namespace RenderCore
 
 		bool LoadTexture(const std::wstring& fileName, ID3D11Device* device);
 		ID3D11ShaderResourceView* GetTextureResource() const;
+		const ZMath::Vec2& GetTextureDimensions() const;
 
 	private:
 		ID3D11ShaderResourceView* mTexture;
+		ZMath::Vec2 mTextureDimensions;
 	};
 }
 #endif

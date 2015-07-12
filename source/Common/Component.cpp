@@ -36,3 +36,13 @@ const Component::ComponentType Component::GetType() const
 {
 	return mType;
 }
+
+const int Component::GetObjectHandle() const
+{
+	return mObjectHandle;
+}
+
+void Component::AssignObjectHandle(const int objectHandle)
+{
+	mObjectHandle = objectHandle;
+}

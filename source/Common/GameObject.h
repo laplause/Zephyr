@@ -10,6 +10,7 @@
 
 #include "Component.h"
 #include "ZMath.h"
+#include <string>
 
 namespace Core
 {
@@ -17,7 +18,7 @@ namespace Core
 	{
 	public:
 		GameObject();
-		explicit GameObject(int id);
+		explicit GameObject(int id, const std::string& objectName);
 		virtual ~GameObject();
 
 		bool isEnabled();
@@ -26,12 +27,21 @@ namespace Core
 		void setEnabled(bool enable);
 		void setVisible(bool visible);
 
+		const std::string& GetName() const;
+		const int GetHandle() const;
+		const ZMath::Mat4x4& GetTransform() const;
+
+		void AttachRenderable(unsigned int handle);
+
 	protected:
+		ZMath::Mat4x4 mTransform;
+
+	private:
+		int mComponentHandles[Component::COMPONENT_TYPE_MAX];
 		bool mEnabled;
 		bool mVisible;
 		int mHandle;
-		unsigned int mComponentHandles[Component::COMPONENT_TYPE_MAX];
-		ZMath::Mat4x4 mTransform;
+		std::string mName;
 	};
 }
 #endif

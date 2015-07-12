@@ -1,6 +1,7 @@
 #include "Renderable.h"
 #include "ModelManager.h"
 #include "MaterialManager.h"
+#include "GameObjectManager.h"
 #include "Mesh.h"
 #include "Material.h"
 #include "ZAssert.h"
@@ -33,6 +34,6 @@ void Renderable::Draw(ID3D11DeviceContext* deviceContext, Camera* camera)
 	ZEPHYR_ASSERT(mMesh != nullptr, "A renderable was initialized with a null mesh");
 	ZEPHYR_ASSERT(mMaterial != nullptr, "A renderable was initialized with a null material");
 	mMaterial->SetActiveShader(deviceContext);
-	mMaterial->SetShaderBuffers(deviceContext, camera);
+	mMaterial->SetShaderBuffers(deviceContext, camera, GameObjectManager::GetGameObjectManager()->GetGameObject(GetObjectHandle())->GetTransform());
 	mMesh->Draw(deviceContext);
 }

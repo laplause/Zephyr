@@ -46,13 +46,14 @@ namespace RenderCore
 
 	}
 
-	unsigned int Renderer::CreateRenderable(const std::string& meshName, const std::string& materialName)
+	unsigned int Renderer::CreateRenderable(const std::string& meshName, const std::string& materialName, const int objectHandle)
 	{
 		unsigned int index = GetNextUnusedRenderable();
 		Renderable& newRenderable = mRenderList[index];
 		newRenderable.Assign(Component::RENDERABLE);
 		newRenderable.SetId(index);
 		newRenderable.Initialize(meshName, materialName);
+		newRenderable.AssignObjectHandle(objectHandle);
 
 		return index;
 	}

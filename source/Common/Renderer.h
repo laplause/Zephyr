@@ -32,7 +32,7 @@ namespace RenderCore
 		virtual void Update();
 		virtual void Draw() = 0;
 
-		unsigned int CreateRenderable(const std::string& meshName, const std::string& materialName);
+		unsigned int CreateRenderable(const std::string& meshName, const std::string& materialName, const int objectHandle);
 		void AddRenderable(Renderable& renderable);
 
 	protected:

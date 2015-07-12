@@ -26,7 +26,7 @@ namespace RenderCore
 
 		virtual void Initialize(const std::string& vsFileName, const std::string& psFileName, DirectXRenderer* renderer) = 0;
 		virtual void SetActiveShader(ID3D11DeviceContext* deviceContext) = 0;
-		virtual void SetShaderBuffers(ID3D11DeviceContext* deviceContext, Camera* camera);
+		virtual void SetShaderBuffers(ID3D11DeviceContext* deviceContext, Camera* camera, ZMath::Mat4x4 objectWorld);
 
 	protected:
 		ID3D11VertexShader* mpVertexShader;

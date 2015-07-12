@@ -31,8 +31,12 @@ namespace Core
 
 		const ComponentType GetType() const;
 
+		const int GetObjectHandle() const;
+		void AssignObjectHandle(const int objectHandle);
+
 	protected:
 		unsigned int mId;
+		int mObjectHandle;
 		ComponentType mType;
 		bool mAssigned;
 	};

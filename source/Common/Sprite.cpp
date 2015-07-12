@@ -1,9 +1,10 @@
 #include "Sprite.h"
 #include "ModelManager.h"
+#include "EngineState.h"
 using namespace Core;
 using namespace ZMath;
 
-Sprite::Sprite(const std::string& objectName) : mQuad(objectName), mName(objectName)
+Sprite::Sprite(int id, const std::string& objectName) : GameObject(id, objectName), mQuad(objectName, this), mPosition(0, 0)
 {
 
 }
@@ -13,11 +14,15 @@ Sprite::~Sprite()
 
 }
 
-void Sprite::Initialize(DirectXRenderer* renderer, const std::string& materialName)
+void Sprite::Initialize(DirectXRenderer* renderer, const std::string& materialName, Texture* spriteTexture)
 {
+	const ZMath::Vec2& texSize = spriteTexture->GetTextureDimensions();
+	mTextureWidth = texSize.x;
+	mTextureHeight = texSize.y;
+
 	mQuad.Initialize(renderer->Direct3DDevice(), renderer->Direct3DDeviceContext());
-	ModelManager::GetModelManager()->AddModel(mName, &mQuad);
-	mComponentHandles[Component::RENDERABLE] = renderer->CreateRenderable(mName, materialName);
+	ModelManager::GetModelManager()->AddModel(GetName(), &mQuad);
+	AttachRenderable(renderer->CreateRenderable(GetName(), materialName, GetHandle()));
 }
 
 void Sprite::Update()
@@ -25,7 +30,15 @@ void Sprite::Update()
 	mQuad.Update();
 }
 
-Sprite::SpriteQuad::SpriteQuad(const std::string& meshName) : Mesh(meshName)
+void Sprite::SetPosition(float x, float y)
+{
+	mPosition.x = x;
+	mPosition.y = y;
+	mTransform.m03 = x;
+	mTransform.m13 = -y;
+}
+
+Sprite::SpriteQuad::SpriteQuad(const std::string& meshName, Sprite* parent) : Mesh(meshName), mParent(parent)
 {
 
 }
@@ -45,10 +58,10 @@ void Sprite::SpriteQuad::Initialize(ID3D11Device* device, ID3D11DeviceContext* d
 	indices = new unsigned long[mIndexCount];
 
 	float left, top, right, bottom;
-	left = (float)((1024 / 2)*-1) + 250;
-	right = left + (float)200;
-	top = (float)(768 / 2) - 50;
-	bottom = top - (float)200;
+	left = (float)(-SCREEN_WIDTH / 2) -(float)(mParent->mTextureWidth / 2) + mParent->mPosition.x;
+	right = left + mParent->mTextureWidth;
+	top = (float)(SCREEN_HEIGHT / 2) + (float)(mParent->mTextureHeight / 2) - mParent->mPosition.y;
+	bottom = top - mParent->mTextureHeight;
 
 	vertices[0].position = Vec3(left, top, 0.0f);  // top left
 	vertices[0].textureCoordinates = Vec2(0, 0);

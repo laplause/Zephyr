@@ -5,6 +5,7 @@
 #include "TextureMaterial.h"
 #include "ModelManager.h"
 #include "MaterialManager.h"
+#include "GameObjectManager.h"
 #include "Texture.h"
 #include "XmlParseMaster.h"
 #include "XmlParseHelperTexture.h"
@@ -37,8 +38,11 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandL
 	MaterialManager::GetMaterialManager()->AddMaterial("texturing", tm);
 	ModelManager::GetModelManager()->AddModel("triangle", t);
 
-	Sprite *s = new Sprite("quad");
-	s->Initialize(&dx, "texturing");
+	Sprite *s = new Sprite(0, "quad");
+	s->Initialize(&dx, "texturing", TextureManager::GetTextureManager()->GetTexture("Jax"));
+
+	GameObjectManager::GetGameObjectManager()->AddGameObject(s->GetHandle(), s);
+
 
 	//dx.CreateRenderable("triangle", "texturing");
 
