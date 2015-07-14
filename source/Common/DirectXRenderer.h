@@ -31,8 +31,8 @@ namespace RenderCore
 
 		virtual void Initialize();
 		virtual void Shutdown();
-		virtual void Update();
-		virtual void Draw();
+		virtual void Update(const Core::GameTime& gameTime);
+		virtual void Draw(const Core::GameTime& gameTime);
 
 		ID3D11Device* Direct3DDevice() const;
 		ID3D11DeviceContext* Direct3DDeviceContext() const;

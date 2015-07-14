@@ -12,10 +12,14 @@
 #include "TextureData.h"
 #include "TextureManager.h"
 #include "Sprite.h"
+#include "GameClock.h"
 using namespace RenderCore;
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandLine, int showCommand)
 {
+	Core::GameClock gameClock;
+	Core::GameTime gameTime;
+
 	RenderCore::DirectXRenderer dx(instance, L"RenderWindow", L"blah", showCommand);
 	dx.Initialize();
 
@@ -58,8 +62,10 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandL
 		}
 		else
 		{
-			dx.Update();
-			dx.Draw();
+			gameClock.UpdateGameTime(gameTime);
+
+			dx.Update(gameTime);
+			dx.Draw(gameTime);
 		}
 	}
 

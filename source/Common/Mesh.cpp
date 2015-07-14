@@ -18,12 +18,12 @@ void Mesh::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext)
 	
 }
 
-void Mesh::Draw(ID3D11DeviceContext* deviceContext)
+void Mesh::Draw(const Core::GameTime& gameTime, ID3D11DeviceContext* deviceContext)
 {
 
 }
 
-void Mesh::Update()
+void Mesh::Update(const Core::GameTime& gameTime)
 {
 
 }

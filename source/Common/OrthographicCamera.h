@@ -20,7 +20,7 @@ namespace RenderCore
 		virtual ~OrthoGraphicCamera();
 
 		virtual void Initialize();
-		virtual void Update();
+		virtual void Update(const Core::GameTime& gameTime);
 		virtual void Reset();
 
 		virtual void UpdateViewMatrix();

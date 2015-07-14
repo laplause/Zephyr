@@ -214,18 +214,18 @@ void DirectXRenderer::InitializeDirectX()
 
 }
 
-void DirectXRenderer::Update()
+void DirectXRenderer::Update(const Core::GameTime& gameTime)
 {
-	camera->Update();
+	camera->Update(gameTime);
 
 	for (unsigned int i = 0; i < mRenderList.size(); i++)
 	{
 		if (mRenderList[i].IsAssigned())
-			mRenderList[i].Update();
+			mRenderList[i].Update(gameTime);
 	}
 }
 
-void DirectXRenderer::Draw()
+void DirectXRenderer::Draw(const Core::GameTime& gameTime)
 {
 	mDirect3DDeviceContext->ClearRenderTargetView(mRenderTargertView, reinterpret_cast<const float*>(mBackGroundColor.data));
 	mDirect3DDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
@@ -234,7 +234,7 @@ void DirectXRenderer::Draw()
 	{
 		if (mRenderList[i].IsAssigned())
 		{
-			mRenderList[i].Draw(mDirect3DDeviceContext, camera);
+			mRenderList[i].Draw(gameTime, mDirect3DDeviceContext, camera);
 		}
 	}
 

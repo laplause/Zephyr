@@ -10,6 +10,7 @@
 
 #include "GameObject.h"
 #include "ZMath.h"
+#include "GameTime.h"
 
 namespace RenderCore
 {
@@ -20,7 +21,7 @@ namespace RenderCore
 		virtual ~Camera();
 
 		virtual void Initialize() = 0;
-		virtual void Update() = 0;
+		virtual void Update(const Core::GameTime& gameTime) = 0;
 
 		virtual void Reset() = 0;
 

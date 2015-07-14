@@ -21,7 +21,7 @@ void System::Shutdown()
 
 }
 
-void System::Update()
+void System::Update(const GameTime& gameTime)
 {
 
 }

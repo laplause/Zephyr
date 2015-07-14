@@ -21,7 +21,7 @@ void Camera::Initialize()
 	
 }
 
-void Camera::Update()
+void Camera::Update(const Core::GameTime& gameTime)
 {
 	
 }

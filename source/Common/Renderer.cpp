@@ -36,12 +36,12 @@ namespace RenderCore
 
 	}
 
-	void Renderer::Update()
+	void Renderer::Update(const GameTime& gameTime)
 	{
 
 	}
 
-	void Renderer::Draw()
+	void Renderer::Draw(const GameTime& gameTime)
 	{
 
 	}

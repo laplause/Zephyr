@@ -27,7 +27,7 @@ void OrthoGraphicCamera::Initialize()
 	Reset();
 }
 
-void OrthoGraphicCamera::Update()
+void OrthoGraphicCamera::Update(const Core::GameTime& gameTime)
 {
 	UpdateViewMatrix();
 }

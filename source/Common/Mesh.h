@@ -10,6 +10,7 @@
 
 #include <string>
 #include <d3d11_1.h>
+#include "GameTime.h"
 
 namespace RenderCore
 {
@@ -21,8 +22,8 @@ namespace RenderCore
 		virtual ~Mesh();
 
 		virtual void Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext);
-		virtual void Update();
-		virtual void Draw(ID3D11DeviceContext* deviceContext);
+		virtual void Update(const Core::GameTime& gameTime);
+		virtual void Draw(const Core::GameTime& gameTime, ID3D11DeviceContext* deviceContext);
 		const ID3D11Buffer* GetVertexBuffer() const;
 		const ID3D11Buffer* GetIndexBuffer() const;
 		const unsigned int GetIndexCount() const;

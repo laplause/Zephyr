@@ -29,8 +29,8 @@ namespace RenderCore
 
 		virtual void Initialize();
 		virtual void Shutdown();
-		virtual void Update();
-		virtual void Draw() = 0;
+		virtual void Update(const GameTime& gameTime);
+		virtual void Draw(const GameTime& gameTime) = 0;
 
 		unsigned int CreateRenderable(const std::string& meshName, const std::string& materialName, const int objectHandle);
 		void AddRenderable(Renderable& renderable);

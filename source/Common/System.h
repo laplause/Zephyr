@@ -8,6 +8,8 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+#include "GameTime.h"
+
 namespace Core
 {
 	//Abstract base class that defines a zephyr system.
@@ -19,7 +21,7 @@ namespace Core
 
 		virtual void Initialize() = 0;
 		virtual void Shutdown() = 0;
-		virtual void Update() = 0;
+		virtual void Update(const GameTime& gameTime) = 0;
 	};
 }
 #endif

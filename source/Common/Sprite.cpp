@@ -25,9 +25,9 @@ void Sprite::Initialize(DirectXRenderer* renderer, const std::string& materialNa
 	AttachRenderable(renderer->CreateRenderable(GetName(), materialName, GetHandle()));
 }
 
-void Sprite::Update()
+void Sprite::Update(const Core::GameTime& gameTime)
 {
-	mQuad.Update();
+	mQuad.Update(gameTime);
 }
 
 void Sprite::SetPosition(float x, float y)
@@ -121,12 +121,15 @@ void Sprite::SpriteQuad::Initialize(ID3D11Device* device, ID3D11DeviceContext* d
 	indices = 0;
 }
 
-void Sprite::SpriteQuad::Update()
+void Sprite::SpriteQuad::Update(const Core::GameTime& gameTime)
 {
+	float speed = 50.0f;
+	float velocity = speed*(float)gameTime.ElapsedGameTime();
 
+	mParent->SetPosition(velocity + mParent->mPosition.x, velocity + mParent->mPosition.y);
 }
 
-void Sprite::SpriteQuad::Draw(ID3D11DeviceContext* deviceContext)
+void Sprite::SpriteQuad::Draw(const Core::GameTime& gameTime, ID3D11DeviceContext* deviceContext)
 {
 	unsigned int stride = sizeof(Vertex);
 	unsigned int offset = 0;

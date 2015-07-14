@@ -13,6 +13,7 @@
 #define RENDERABLE_H
 
 #include "Component.h"
+#include "GameTime.h"
 #include <string>
 #include <d3d11_1.h>
 
@@ -29,8 +30,8 @@ namespace RenderCore
 		virtual ~Renderable();
 
 		virtual void Initialize(const std::string& meshName, const std::string& materialName);
-		virtual void Update();
-		virtual void Draw(ID3D11DeviceContext* deviceContext, Camera* camera);
+		virtual void Update(const Core::GameTime& gameTime);
+		virtual void Draw(const Core::GameTime& gameTime, ID3D11DeviceContext* deviceContext, Camera* camera);
 
 	protected:
 		Material* mMaterial;

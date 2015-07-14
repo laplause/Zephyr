@@ -28,8 +28,8 @@ namespace Core
 			virtual ~SpriteQuad();
 
 			virtual void Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext);
-			virtual void Update();
-			virtual void Draw(ID3D11DeviceContext* deviceContext);
+			virtual void Update(const Core::GameTime& gameTime);
+			virtual void Draw(const Core::GameTime& gameTime, ID3D11DeviceContext* deviceContext);
 
 		private:
 			struct Vertex
@@ -48,7 +48,7 @@ namespace Core
 		virtual ~Sprite();
 
 		virtual void Initialize(RenderCore::DirectXRenderer* renderer, const std::string& materialName, Texture* spriteTexture);
-		virtual void Update();
+		virtual void Update(const Core::GameTime& gameTime);
 
 		void SetPosition(float x, float y);
 
