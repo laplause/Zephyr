@@ -69,7 +69,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName)D.lib" "$(SolutionDir)..\lib\$
 </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;ExpatD.lib;DirectXTKD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;dinput8.lib;ExpatD.lib;DirectXTKD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(WindowsSDK_LibraryPath_x86)\;$(SolutionDir)..\External\Expat\library\;$(SolutionDir)..\External\DirectXTK\library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -100,7 +100,7 @@ copy "$(ProjectDir)*.h" "$(SolutionDir)..\include"</Command>
 copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(ProjectName).lib"</Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;Expat.lib;DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;dinput8.lib;Expat.lib;DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(WindowsSDK_LibraryPath_x86)\;$(SolutionDir)..\External\Expat\library\;$(SolutionDir)..\External\DirectXTK\library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -113,12 +113,15 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameTime.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="IXmlParseHelper.h" />
+    <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="MaterialManager.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelManager.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="OrthographicCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="Renderable.h" />
@@ -144,12 +147,15 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GameTime.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IXmlParseHelper.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="MaterialManager.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelManager.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="OrthographicCamera.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="Renderable.cpp" />

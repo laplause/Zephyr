@@ -76,4 +76,9 @@ namespace RenderCore
 
 		return count;
 	}
+
+	const SystemWindow* Renderer::GetWindow() const
+	{
+		return mWindow;
+	}
 }

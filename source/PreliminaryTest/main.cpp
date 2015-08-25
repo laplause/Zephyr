@@ -13,6 +13,7 @@
 #include "TextureManager.h"
 #include "Sprite.h"
 #include "GameClock.h"
+#include "InputManager.h"
 using namespace RenderCore;
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandLine, int showCommand)
@@ -22,6 +23,8 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandL
 
 	RenderCore::DirectXRenderer dx(instance, L"RenderWindow", L"blah", showCommand);
 	dx.Initialize();
+
+	Core::InputManager::CreateInstance(dx);
 
 	TextureData data;
 	XmlParseMaster parser(&data);
@@ -47,11 +50,14 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandL
 
 	GameObjectManager::GetGameObjectManager()->AddGameObject(s->GetHandle(), s);
 
-
 	//dx.CreateRenderable("triangle", "texturing");
 
 	MSG message;
 	ZeroMemory(&message, sizeof(message));
+
+	float speed = 100.0f;
+	float velocity = 0;
+	Core::InputManager& im = *(Core::InputManager::GetInputManager());
 
 	while (message.message != WM_QUIT)
 	{
@@ -64,6 +70,16 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR comandL
 		{
 			gameClock.UpdateGameTime(gameTime);
 
+			velocity = speed*(float)gameTime.ElapsedGameTime();
+
+			im.Update(gameTime);
+			
+			if (im.IsKeyDown(DIK_S) && im.IsKeyDown(DIK_D))
+				s->SetPosition(velocity + s->GetPosition().x, velocity + s->GetPosition().y);
+			else if (im.IsKeyDown(DIK_S) || im.IsButtonDown(MouseButtons::MOUSEBUTTONSLEFT))
+				s->SetPosition(s->GetPosition().x, velocity + s->GetPosition().y);
+			else if (im.IsKeyDown(DIK_D))
+				s->SetPosition(velocity + s->GetPosition().x, s->GetPosition().y);
 			dx.Update(gameTime);
 			dx.Draw(gameTime);
 		}

@@ -49,6 +49,11 @@ const HWND SystemWindow::GetWindowHandle() const
 	return mWindowHandle;
 }
 
+const HINSTANCE SystemWindow::GetInstance() const
+{
+	return mInstance;
+}
+
 LRESULT WINAPI SystemWindow::WndProc(HWND windowHandle, unsigned int message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)

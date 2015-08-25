@@ -39,6 +39,11 @@ void ColorMaterial::Initialize(const std::string& vsFileName, const std::string&
 	renderer->Direct3DDevice()->CreateBuffer(&matrixBufferDesc, NULL, &mpMatrixBuffer);
 }
 
+void ColorMaterial::Update(const Core::GameTime& gameTime)
+{
+
+}
+
 void ColorMaterial::SetActiveShader(ID3D11DeviceContext* deviceContext)
 {
 	Material::SetActiveShader(deviceContext);

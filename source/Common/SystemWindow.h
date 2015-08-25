@@ -25,6 +25,7 @@ namespace RenderCore
 #if defined WINDOWS
 		SystemWindow(HINSTANCE instance, const std::wstring& windowClass, const std::wstring& windowTitle, int showCommand);
 		const HWND GetWindowHandle() const;
+		const HINSTANCE GetInstance() const;
 #endif
 		~SystemWindow();
 		void Initialize();

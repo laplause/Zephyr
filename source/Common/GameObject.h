@@ -35,9 +35,9 @@ namespace Core
 
 	protected:
 		ZMath::Mat4x4 mTransform;
+		int mComponentHandles[Component::COMPONENT_TYPE_MAX];
 
 	private:
-		int mComponentHandles[Component::COMPONENT_TYPE_MAX];
 		bool mEnabled;
 		bool mVisible;
 		int mHandle;

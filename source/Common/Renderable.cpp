@@ -27,6 +27,7 @@ void Renderable::Update(const Core::GameTime& gameTime)
 {
 	ZEPHYR_ASSERT(mMesh != nullptr, "A renderable was initialized with a null mesh");
 	mMesh->Update(gameTime);
+	mMaterial->Update(gameTime);
 }
 
 void Renderable::Draw(const Core::GameTime& gameTime, ID3D11DeviceContext* deviceContext, Camera* camera)

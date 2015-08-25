@@ -60,6 +60,11 @@ void TextureMaterial::Initialize(const std::string& vsFileName, const std::strin
 	mTexture = RenderCore::TextureManager::GetTextureManager()->GetTexture("Jax")->GetTextureResource();
 }
 
+void TextureMaterial::Update(const Core::GameTime& gameTime)
+{
+	
+}
+
 void TextureMaterial::SetActiveShader(ID3D11DeviceContext* deviceContext)
 {
 	Material::SetActiveShader(deviceContext);

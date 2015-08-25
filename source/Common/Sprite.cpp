@@ -38,6 +38,11 @@ void Sprite::SetPosition(float x, float y)
 	mTransform.m13 = -y;
 }
 
+ZMath::Vec2 Sprite::GetPosition() const
+{
+	return mPosition;
+}
+
 Sprite::SpriteQuad::SpriteQuad(const std::string& meshName, Sprite* parent) : Mesh(meshName), mParent(parent)
 {
 
@@ -123,10 +128,7 @@ void Sprite::SpriteQuad::Initialize(ID3D11Device* device, ID3D11DeviceContext* d
 
 void Sprite::SpriteQuad::Update(const Core::GameTime& gameTime)
 {
-	float speed = 50.0f;
-	float velocity = speed*(float)gameTime.ElapsedGameTime();
-
-	mParent->SetPosition(velocity + mParent->mPosition.x, velocity + mParent->mPosition.y);
+	
 }
 
 void Sprite::SpriteQuad::Draw(const Core::GameTime& gameTime, ID3D11DeviceContext* deviceContext)

@@ -51,6 +51,7 @@ namespace Core
 		virtual void Update(const Core::GameTime& gameTime);
 
 		void SetPosition(float x, float y);
+		ZMath::Vec2 GetPosition() const;
 
 		static enum AnchorPoint
 		{

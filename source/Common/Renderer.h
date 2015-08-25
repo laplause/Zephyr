@@ -35,6 +35,8 @@ namespace RenderCore
 		unsigned int CreateRenderable(const std::string& meshName, const std::string& materialName, const int objectHandle);
 		void AddRenderable(Renderable& renderable);
 
+		const SystemWindow* GetWindow() const;
+
 	protected:
 		const unsigned int GetNextUnusedRenderable();
 

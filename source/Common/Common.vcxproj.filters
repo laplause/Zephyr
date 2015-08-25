@@ -25,6 +25,15 @@
     <Filter Include="XML\SharedData">
       <UniqueIdentifier>{b684f6c7-de65-44eb-aa14-dc62c68a13eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{f8bb6fa1-6f47-4183-af1c-aef20eee25d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Header Files">
+      <UniqueIdentifier>{6f05dd27-3df4-4df4-b3df-13136a1ba065}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Source Files">
+      <UniqueIdentifier>{e0705a1c-a434-4144-8f76-6cf3c5795182}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ZMath.h">
@@ -114,6 +123,15 @@
     <ClInclude Include="GameTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Input\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Input\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Input\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SystemWindow.cpp">
@@ -193,6 +211,15 @@
     </ClCompile>
     <ClCompile Include="GameTime.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Input\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Input\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Input\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
