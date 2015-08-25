@@ -69,7 +69,7 @@ copy "$(ProjectDir)$(Configuration)\$(ProjectName)D.lib" "$(SolutionDir)..\lib\$
 </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;dinput8.lib;ExpatD.lib;DirectXTKD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;dinput8.lib;dxguid.lib;ExpatD.lib;DirectXTKD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(WindowsSDK_LibraryPath_x86)\;$(SolutionDir)..\External\Expat\library\;$(SolutionDir)..\External\DirectXTK\library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -100,7 +100,7 @@ copy "$(ProjectDir)*.h" "$(SolutionDir)..\include"</Command>
 copy "$(ProjectDir)$(Configuration)\$(ProjectName).lib" "$(SolutionDir)..\lib\$(ProjectName).lib"</Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;dinput8.lib;Expat.lib;DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;dinput8.lib;dxguid.lib;Expat.lib;DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(WindowsSDK_LibraryPath_x86)\;$(SolutionDir)..\External\Expat\library\;$(SolutionDir)..\External\DirectXTK\library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
